@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Hsuan-I Ho</title>
+	<meta charset='UTF-8' />
+  <script type='text/javascript' src='softscroll.js'></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="main.css" />
+
+  <link id='redux-google-fonts-css' href='//fonts.googleapis.com/css?family=Fascinate+Inline|Lobster|Annie+Use+Your+Telescope|Inconsolata|Gloria+Hallelujah|Pacifico|Shadows+Into+Light|Bilbo|Calligraffitti' rel='stylesheet' type='text/css'>
+	<!--To use google font in github, use href='//fonts.googleapis...' instead of href='http//fonts.googleapis...' -->
+	<!-- <link id='redux-google-fonts-css' href='http://fonts.googleapis.com/css?family=Fascinate+Inline|Lobster|Annie+Use+Your+Telescope|Inconsolata|Gloria+Hallelujah|Pacifico|Shadows+Into+Light|Bilbo|Calligraffitti' rel='stylesheet' type='text/css'> -->
+
+
+   <script>
+   function showhide(id) {
+     var e = document.getElementById(id);
+     e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+   }
+  </script>
+
+	<script>
+		var slideIndex = 1;
+		showDivs(slideIndex);
+
+		function plusDivs(n) {
+		  showDivs(slideIndex += n);
+		}
+
+		function currentDiv(n) {
+		  showDivs(slideIndex = n);
+		}
+
+		function showDivs(n) {
+		  var i;
+		  var x = document.getElementsByClassName("mySlides");
+		  var dots = document.getElementsByClassName("demo");
+		  if (n > x.length) {slideIndex = 1}
+		  if (n < 1) {slideIndex = x.length}
+		  for (i = 0; i < x.length; i++) {
+		     x[i].style.display = "none";
+		  }
+		  for (i = 0; i < dots.length; i++) {
+		     dots[i].className = dots[i].className.replace(" w3-white", "");
+		  }
+		  x[slideIndex-1].style.display = "block";
+		  dots[slideIndex-1].className += " w3-white";
+		}
+	</script>
+
+</head>
+<body>
+
+<div id="page-wrap">
+
+  <a name="home"></a>
+  <div id="page0">
+		<div class="page-padding"></div>
+
+    <div class="row vertical-align">
+      <div class="col-sm-4 text-right">
+				<p>
+					<img src="images/walonchiu.jpg" id="circle"/><br><br>
+					<img src="images/walonchiu_calligraphy.png" id="reg"/>
+				</p>
+			</div>
+      <div class="col-sm-8 text-left">
+        <div class="row">
+          <div class="col-sm-12 text-left">
+            <p><b><h4>Assistant Professor in <a style="color:black; text-decoration: none;" target="_blank" href="https://www.cs.nctu.edu.tw/cswebsite/">Computer Science</a><br>
+              at <a style="color:black; text-decoration: none;" target="_blank" href="http://www.nctu.edu.tw/en">National Chiao Tung University</a></h4></b></p>
+          </div>
+          <!-- <div class="col-sm-3 text-left">
+            <img src="images/logos/NCTU.png" id="circle"/>
+          </div> -->
+          <div class="col-sm-12 text-left" style="color:#808080">
+            <p><b><h4>Doctor of Engineering Science (Dr.-Ing.)<br>
+              <a style="color:#808080; text-decoration: none;" target="_blank" href="http://www.mpi-inf.mpg.de/">Max Planck Institute for Informatics</a></h4></b></p>
+          </div>
+          <!-- <div class="col-sm-3 text-left">
+            <img src="images/logos/MPI.png" id="circle"/>
+          </div> -->
+					<div class="col-sm-12 text-left" style="color:#696969">
+						<table align="left" style="width:70%;">
+							<tr>
+								<td width="5%" align="center"><p><b><h5><img src="images/materials/email.png" width="75%"/> <!--Email:--> </h5></b></p></td>
+								<td colspan="3" width="80%" align="left"><p><h5>
+									walon <font color="#783f04">[at]</font> cs <font color="#783f04">[dot]</font> nctu <font color="#783f04">[dot]</font> edu <font color="#783f04">[dot]</font> tw<br>
+									walon <font color="#783f04">[at]</font> mpi <font color="#783f04">[hypen]</font> inf <font color="#783f04">[dot]</font> mpg <font color="#783f04">[dot]</font> de<br>
+									walon <font color="#783f04">[dot]</font> chiu <font color="#783f04">[at]</font> gmail <font color="#783f04">[dot]</font> com<br>
+								</h5></p></td>
+							</tr>
+							<tr>
+								<td width="5%" align="center"><p><b><h5><img src="images/materials/cv.png" width="75%"/></h5></b></p></td>
+								<td width="40%" align="left"><p><h5><a style="color:#696969; text-decoration: none;" target="_blank" href="http://people.cs.nctu.edu.tw/~walon/publications/walon_CV_detailed.pdf">Curriculum Vitae</a></h5></p></td>
+								<td width="5%" align="center"><p><b><h5><img src="images/materials/gs.png" width="85%"/></h5></b></p></td>
+								<td width="40%" align="left"><p><h5><a style="color:#696969; text-decoration: none;" target="_blank" href="https://scholar.google.com/citations?user=FiFOBS8AAAAJ">Google Scholar</a></h5></p></td>
+							</tr>
+						</table>
+					</div>
+        </div>
+      </div>
+    </div>
+		<div class="row vertical-align">
+			<div class="col-sm-4 text-right">
+				<p><img src="images/logos/EVA.png" id="reg"/></p>
+			</div>
+			<div class="col-sm-8 text-left">
+				<p><i>
+					<font color="#783f04">[Office]</font> Room 526, Engineering Building C</font><br>
+					<font color="#783f04">[Telephone]</font> +886-3-5712121 ext.54730 </font><br><br>
+					Information about my research group:<br>
+					<font color="#783f04">[Name]</font> Enriched Vision Applications Lab</font><br>
+					<font color="#783f04">[Location]</font> Room 708, MIRC Building (co-located with Intelligent System Lab)</font><br>
+					<font color="#783f04">[Telephone]</font> +886-3-5712121 ext.59275 </font><br>
+				</i></p>
+			</div>
+		</div>
+	</div>
+
+	<br><br><br>
+	<div style="text-align: center;">
+	<span style="color:#D2691E; font-family:'Annie Use Your Telescope'; font-style: italic;">
+		<h1><b>News</b></h1>
+	</span>
+	</div>
+	<div id="news">
+	<ul>
+	  <li><font style="color:red">I am looking for highly-motivated students to join my research group. Please send me an e-mail if you are interested.</font>
+			<a style="color:#ffcc99; text-decoration: none;" target="_blank" href="https://www.ptt.cc/bbs/graduate/M.1489501190.A.39D.html">(post on ptt-graduate)</a>
+		</li>
+		<li><i style="color:#969696">[04<sup>th</sup>.12.2017]</i> Invited talk on my research works, Dept. of CSIE, NTUST, Taiwan.</li>
+		<li><i style="color:#969696">[29<sup>th</sup>.11.2017]</i> Invited talk on my research works, TIGP, Academia Sinica, Taiwan.</li>
+		<li><i style="color:#969696">[24<sup>th</sup>.11.2017]</i> Invited talk on my research works, Inst. of COM, NTHU, Taiwan.</li>
+		<li><i style="color:#969696">[16<sup>th</sup>.10.2017]</i> CS seminar for senior students, Dept. of CS, NCTU, Taiwan.</li>
+		<li><i style="color:#969696">[02<sup>nd</sup>.10.2017]</i> Invited talk on my research works, Dept. of CSIE, CCU, Taiwan.</li>
+		<li><i style="color:#969696">[13<sup>th</sup>.09.2017]</i> Introduction to computer vision and machine learning, National Experimental High School at Hsinchu Science Park (NEHS), Hsinchu, Taiwan.</li>
+		<li><i style="color:#969696">[08<sup>th</sup>.08.2017]</i> Two conference papers accepted in MLSP 2017.</li>
+		<li><i style="color:#969696">[12<sup>th</sup>.05.2017]</i> Invited talk on my research works, Dept. of EE, CCU, Taiwan.</li>
+		<!-- <li><i style="color:#969696">[30<sup>th</sup>.03.2017]</i> Invited talk on my research works, Dept. of EE, NCKU, Taiwan.</li> -->
+	  <li><i style="color:#969696">[14<sup>th</sup>.03.2017]</i> I am excited to join the Dept. of CS, NCTU, Taiwan, as an Assistant Professor from August, 2017.</li>
+	  <li><i style="color:#969696">[27<sup>th</sup>.02.2017]</i> A conference paper accepted in CVPR 2017.</li>
+		<li><i style="color:#969696">[08<sup>th</sup>.02.2017]</i> I join MML research group, CITI, Academia Sinica, Taiwan, as a postdoctoral researcher.</li>
+	</ul>
+	</div>
+
+  <!-- ================================================== -->
+  <!--END page0-->
+  <!-- ================================================== -->
+  <a name="about"></a>
+  <!-- <div class="horizontal-line"/></div> -->
+
+	<div id="page1">
+		<div class="page-padding"></div>
+    <div style="text-align: center;">
+    <span style="color:#D2691E; font-family:'Annie Use Your Telescope'; font-style: italic;">
+      <h1><b>Education</b></h1>
+    </span>
+    </div>
+    <div class="project" style="font-size: 16px;">
+      <div class="row vertical-align">
+        <div class="col-sm-3 text-right"><img src="images/logos/NTU.png" id="reg"/></div>
+        <div class="col-sm-8 text-left">Bachelor of Science in <a style="color:black; text-decoration: none;" target="_blank" href="https://web.ee.ntu.edu.tw/eng/index.php">Electrical Engineering</a>,<br>
+          <a style="color:black; text-decoration: none;" target="_blank" href="http://www.ntu.edu.tw/english/index.html">National Taiwan University, Taipei, Taiwan</a>
+          <p style="color:#969696">[September.2012 - June.2016]</p>
+        </div>
+      </div>
+      <br>
+      <div class="row vertical-align">
+        <div class="col-sm-3 text-right"><img src="images/logos/TokyoTech.png" id="reg"/></div>
+        <div class="col-sm-8 text-left">
+					Exchange Student Program, <a style="color:black; text-decoration: none;" target="_blank" href="https://educ.titech.ac.jp/cs/eng/">Computer Science</a>,<br>
+					<a style="color:black; text-decoration: none;" target="_blank" href="https://www.titech.ac.jp/english/">Tokyo Institute of Technology, Tokyo, Japan</a>
+          <p style="color:#969696">[October.2015 - March.2016]</p>
+        </div>
+      </div>
+      <br>
+      <div class="row vertical-align">
+        <div class="col-sm-3 text-right"><img src="images/logos/CKHS.png" id="reg"/></div>
+        <div class="col-sm-8 text-left"><a style="color:black; text-decoration: none;" target="_blank" href="http://web.ck.tp.edu.tw/web2007en/index.php">Taipei Municipal Jianguo High School, Taipei, Taiwan</a>
+          <p style="color:#969696">[September.2009 - June.2012]</p>
+        </div>
+      </div>
+    </div>
+
+    <br><br>
+    <div style="text-align: center;">
+    <span style="color:#D2691E; font-family:'Annie Use Your Telescope'; font-style: italic;">
+      <h1><b>Academic and Working Experience</b></h1>
+    </span>
+    </div>
+
+    <div class="project" style="font-size: 16px;">
+      <div class="row vertical-align">
+          <div class="col-sm-3 text-right"><img src="images/logos/NTU.png" id="circle"/></div>
+          <div class="col-sm-8 text-left">Research Assistant, <a style="color:black; text-decoration: none;" target="_blank" href="http://vllab.ee.ntu.edu.tw/">Vision and Learning Lab</a>,<br>
+						<a style="color:black; text-decoration: none;" target="_blank" href="http://www.ntu.edu.tw/english/index.html">National Taiwan University</a>
+            <p style="color:#969696">[September.2017 - ]</p>
+          </div>
+        </div>
+        <br>
+      <div class="row vertical-align">
+        <div class="col-sm-3 text-right"><img src="images/logos/SINICA.png" id="circle"/></div>
+        <div class="col-sm-8 text-left">Research Assistant, <a style="color:black; text-decoration: none;" target="_blank" href="http://mml.citi.sinica.edu.tw/">Multimedia and Machine Learning Lab</a>,<br>
+          <a style="color:black; text-decoration: none;" target="_blank" href="https://www.citi.sinica.edu.tw/en/">Research Center for Information Technology Innovation</a>,<br>
+					<a style="color:black; text-decoration: none;" target="_blank" href="https://www.sinica.edu.tw/en">Academia Sinica, Taipei, Taiwan</a>
+          <p style="color:#969696">[March.2017 - August.2017]</p>
+        </div>
+      </div>
+      <br>
+      <div class="row vertical-align">
+        <div class="col-sm-3 text-right"><img src="images/logos/NTU.png" id="reg_circle"/></div>
+        <div class="col-sm-8 text-left">Research Assistant, <a style="color:black; text-decoration: none;" target="_blank" href="http://vllab.ee.ntu.edu.tw/">Media IC and System Lab</a>,<br>
+            <a style="color:black; text-decoration: none;" target="_blank" href="http://www.ntu.edu.tw/english/index.html">National Taiwan University</a>
+          <p style="color:#969696">[September.2016 - February.2017]</p>
+        </div>
+      </div>
+      
+
+	</div>
+  <!-- ================================================== -->
+  <!--END page1-->
+  <!-- ================================================== -->
+
+  <a name="publications"></a>
+  <!-- <div class="horizontal-line"/></div> -->
+
+	<div id="page3">
+        <div class="page-padding"></div>
+        <div style="text-align: center;">
+        <span style="color:#D2691E; font-family:'Annie Use Your Telescope'; font-style: italic;">
+                <h1><b>Publications</b></h1>
+        </span>
+        </div>
+
+	    <div class="project" id="Arxiv2017">
+          <div class="row vertical-align">
+            <div class="col-sm-4">
+              <div class="paper-teaser">
+                <img alt="teaser figure" class="thumbnail" src="images/projects/cdd_logo.jpg">
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <h4>For Your Eyes Only: Learning to Summarize First-Person Videos</h4>
+              <p class="authors">
+    						<u>Hsuan-I Ho</u>,
+    						<a style="color:black; text-decoration: none;" target="_blank" href="https://walonchiu.github.io/">Wei-Chen Chiu</a>,
+    						<a style="color:black; text-decoration: none;" target="_blank" href="http://www.ee.ntu.edu.tw/profile1?teacher_id=24037&p=3">Yu-Chiang Frank Wang</a>
+    					</p>
+              <p class="conference">
+                [<a style="color:blue;" href="https://arxiv.org/pdf/1711.08922.pdf" target="_blank">ArXiv 2017</a>
+                (<a style="color:#969696;" href="javascript:showhide('Arxiv2017_bib')">BibTeX</a>)]
+              </p>
+              <div id="Arxiv2017_bib" style="display:none;">
+                <p>
+                    @misc{1711.08922,<br>
+                    &nbsp;Author = {Hsuan-I Ho and Wei-Chen Chiu and Yu-Chiang Frank Wang},<br>
+                    &nbsp;Title = {For Your Eyes Only: Learning to Summarize First-Person Videos},<br>
+                    &nbsp;Year = {2017},<br>
+                    &nbsp;Eprint = {arXiv:1711.08922},<br>
+                    }
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+	    <div class="project" id="mlsp2017-81">
+          <div class="row vertical-align">
+            <div class="col-sm-4">
+              <div class="paper-teaser">
+                <img alt="teaser figure" class="thumbnail" src="images/projects/cdd_logo.jpg">
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <h4>Learning Guided Convolutional Neural Networks For Cross-Resolution Face Recognition</h4>
+              <p class="authors">
+	    					<a style="color:black; text-decoration: none;">Tzu-Chien Fu</a>,
+	    					<u>Wei-Chen Chiu</u>,
+	    					<a style="color:black; text-decoration: none;" target="_blank" href="https://www.citi.sinica.edu.tw/pages/ycwang/">Yu-Chiang Frank Wang</a>
+	    				</p>
+              <p class="conference">
+                [<a style="color:blue;" href="http://people.cs.nctu.edu.tw/~walon/publications/fu17mlsp.pdf" target="_blank">MLSP 2017</a>
+                (<a style="color:#969696;" href="javascript:showhide('mlsp2017-81_bib')">BibTeX</a>)]
+              </p>
+              <div id="mlsp2017-81_bib" style="display:none;">
+                <p>
+                  @inproceedings{fu17mlsp,<br>
+                  &nbsp;title = {Learning Guided Convolutional Neural Networks For Cross-Resolution Face Recognition},<br>
+                  &nbsp;author = {Tzu-Chien Fu and Wei-Chen Chiu and Yu-Chiang Frank Wang},<br>
+                  &nbsp;booktitle = {IEEE International Workshop on Machine Learning for Signal Processing (MLSP)},<br>
+                  &nbsp;year = {2017}<br>
+                  }
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+    </div>
+
+  <!-- ================================================== -->
+  <!--END page3-->
+  <!-- ================================================== -->
+
+</div> <!--END page-wrap-->
+
+<div id="page_end">
+	<div style="text-align: center;">
+	<span style="color:#44077b; font-family:'Annie Use Your Telescope';">
+		<p><b><h5>
+			Special Thanks Walon Chiu <br>
+			(Last Modified: 3<sup>rd</sup>.10.2017)
+		</h5></b></p>
+	</span>
+	</div>
+</div>
+<!-- ================================================== -->
+<!--END footer-->
+<!-- ================================================== -->
+
+
+<div id="header">
+	<div id="nav">
+    <h1><b>Hsuan-I HO</b></h1>
+    <span style="word-spacing:normal; color:white; font-family:'Annie Use Your Telescope', arial, serif;">
+    <ul class="__inline" id="menu">
+      <li><h3><a href="#home">Home</a></h3></li>
+      <li><h3><a href="#about">About Me</a></h3></li>
+      <li><h3><a href="#publications">Publications</a></h3></li>
+      <li><h3><a href="#videos">Videos</a></h3></li>
+      
+    </ul>
+    </span>
+	</div>
+</div>
+
+<!-- <div class="w3-content w3-display-container">
+	<img class="mySlides" src="img_nature_wide.jpg" style="width:100%">
+	<img class="mySlides" src="img_fjords_wide.jpg" style="width:100%">
+	<img class="mySlides" src="img_mountains_wide.jpg" style="width:100%">
+	<div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+		<div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+		<div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+		<span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+		<span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+		<span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+	</div>
+</div> -->
+
+</body>
+</html>
