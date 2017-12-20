@@ -18,7 +18,7 @@ body {
 .page-padding {height:10px; width:100%;}
 
 .wrapper-light {
-    background-color: rgba(133, 170, 184, 0.288);
+    background-color: rgba(255, 255, 255, 0.39);
 }
 
 .profile-wrapper {
@@ -26,9 +26,13 @@ body {
     position: relative;
     top: 12%;
 	width: 100%;
-	margin-top: 5%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-right: 20px;
+	padding-left: 20px;
+	
     margin-left: auto;
-    margin-right: auto;
+	margin-right: auto;
 }
 
 a { color:white; text-decoration:none; }
