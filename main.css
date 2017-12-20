@@ -7,10 +7,10 @@ body {
 	/*background:#e0e6d3;*/
 	/*background-image:url( 'images/materials/page_bg.gif' );*/
 	/*background-repeat:repeat-x;*/
-	background-image:url( 'images/materials/seigaiha.png' );
+	background-image:url( 'images/materials/bg.jpg' );
 	margin: 0 auto;
 	font-family:'Inconsolata',georgia,times,serif,'Annie Use Your Telescope','Lobster','Fascinate Inline','Gloria Hallelujah','Pacifico','Shadows Into Light','Bilbo','Calligraffitti';
-	height:2000px;
+	/*height:2000px;*/
 	}
 
 .page-padding {height:10px; width:100%;}
@@ -216,7 +216,7 @@ h2 {
 	.w3-badge {height:13px;width:13px;padding:0}
 
 	/**
-	 * Project item
+	 *  item
 	 * ==================================================
 	 */
 
