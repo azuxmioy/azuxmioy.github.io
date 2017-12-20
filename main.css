@@ -8,10 +8,10 @@ body {
 	/*background-image:url( 'images/materials/page_bg.gif' );*/
 	/*background-repeat:repeat-x;*/
 	background-image:url( 'images/bg.jpg' );
-    background-repeat:no-repeat;
+	background-repeat:no-repeat;
+	background-position: center; 
 	margin: 0 auto;
 	font-family:'Inconsolata',georgia,times,serif,'Annie Use Your Telescope','Lobster','Fascinate Inline','Gloria Hallelujah','Pacifico','Shadows Into Light','Bilbo','Calligraffitti';
-	height:2000px;
 	}
 
 .page-padding {height:10px; width:100%;}
