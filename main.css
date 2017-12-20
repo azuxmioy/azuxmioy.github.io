@@ -11,7 +11,7 @@ body {
 	background-repeat:no-repeat;
 	background-position: center top; 
 	margin: 0 auto;
-	font-family:'Inconsolata',georgia,times,serif,'Annie Use Your Telescope','Lobster','Fascinate Inline','Gloria Hallelujah','Pacifico','Shadows Into Light','Bilbo','Calligraffitti';
+	font-family:'Inconsolata',georgia,times,serif,'Annie Use Your Telescope','Lobster','Fascinate Inline','Gloria Hallelujah','Pacifico','Shadows Into Light','Bilbo','Calligraffitti','Roboto';
 	}
 
 .page-padding {height:10px; width:100%;}
@@ -134,7 +134,7 @@ h2 {
 #page0 {
 	/*height:600px;*/
 	width:80%;
-	padding-top: 100px;
+	padding-top: 50px;
 	/*padding-left: 5%;*/
 	/*padding-right: 5%;*/
 	margin-left: 10%;
@@ -148,7 +148,7 @@ h2 {
 #page1 {
 	/*height:1100px;*/
 	width:80%;
-	padding-top: 100px;
+	padding-top: 50px;
 	/*padding-bottom: 5%;*/
 	padding-left: 5%;
 	padding-right: 5%;
