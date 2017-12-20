@@ -11,8 +11,8 @@ body {
 	background-image:url( 'images/bg.jpg' );
 	background-repeat:no-repeat;
 	background-position: center top; 
-	margin: 0 auto;
-	height:600px;	
+	background-size:auto;
+	margin: 0 auto;	
 	font-family:'Inconsolata',georgia,times,serif,'Annie Use Your Telescope','Lobster','Fascinate Inline','Gloria Hallelujah','Pacifico','Shadows Into Light','Bilbo','Calligraffitti','Open Sans';
 	}
 
@@ -282,3 +282,66 @@ h2 {
 	    /*max-width: 300px;*/
 	}
 /* ================================================== */
+
+.ui-widget{
+	font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
+	font-size:14px;
+	padding:10px;
+	border-width:3px;
+  }
+  .ui-dialog .ui-dialog-content{
+	padding-top:20px;
+  }
+  .demo-description {
+	  clear: both;
+	  padding: 12px;
+	  font-size: 1.3em;
+	  line-height: 1.4em;
+  }
+  
+  .ui-draggable, .ui-droppable {
+	  background-position: top;
+  }
+  .ui-dialog .ui-dialog-titlebar-close {
+	width:auto;
+  }
+  .ui-icon{
+	text-indent: 0;
+	width:auto;
+  }
+  button{
+	margin:20px auto;
+	display:block;
+	background:#CE0538;
+	border:none;
+	padding:10px;
+	font-size:16px;
+	margin:10px auto;
+	border-radius:5px;
+	cursor:pointer;
+	width:500px;
+	color:#FFF;
+	font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
+  }
+  .btn-red{
+	background: #CE0538;
+	padding:10px;
+	color:#FFF;
+	text-decoration:none;
+	border-radius:2px;
+	display:inline-block;
+	margin-top:10px;
+  }
+  .btn-red:focus,
+  button:focus,
+  button:hover{
+	background:#830324;
+  }
+  .ui-button-icon-only .ui-button-text, 
+  .ui-button-icons-only .ui-button-text{
+	text-indent:0;  
+	padding: 0;
+  }
+  .ui-dialog .ui-dialog-titlebar-close{
+	height: 20px;
+  }
