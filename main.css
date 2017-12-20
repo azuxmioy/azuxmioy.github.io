@@ -18,14 +18,15 @@ body {
 .page-padding {height:10px; width:100%;}
 
 .wrapper-light {
-    background-color: rgba(133, 169, 184, 0.651);
+    background-color: rgba(133, 170, 184, 0.288);
 }
 
 .profile-wrapper {
     border-radius: 32px;
     position: relative;
     top: 12%;
-    width: 100%;
+	width: 100%;
+	margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
 }
