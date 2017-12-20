@@ -7,6 +7,7 @@ body {
 	/*background:#e0e6d3;*/
 	/*background-image:url( 'images/materials/page_bg.gif' );*/
 	/*background-repeat:repeat-x;*/
+	background-color: rgb(190, 190, 190);
 	background-image:url( 'images/bg.jpg' );
 	background-repeat:no-repeat;
 	background-position: center top; 
