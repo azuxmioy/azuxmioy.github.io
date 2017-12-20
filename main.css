@@ -24,10 +24,9 @@ body {
 .profile-wrapper {
     border-radius: 32px;
     position: relative;
-    top: 12%;
 	width: 100%;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	padding-right: 20px;
 	padding-left: 20px;
 	
