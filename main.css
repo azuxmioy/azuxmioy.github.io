@@ -260,13 +260,17 @@ h2 {
 	    margin: auto;
 	}
 
-	.conference, .source, .authors {
+	.source, .authors {
 	    font-style: italic;
 			/*color: blue;*/
 	    font-size: 16px;
 	    /*line-height: 14px;*/
 	}
-
+	.conference{
+			/*color: blue;*/
+	    font-size: 16px;
+	    /*line-height: 14px;*/
+	}
 	.paper-teaser {
 	    margin: auto;
 	}
