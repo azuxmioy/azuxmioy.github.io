@@ -12,7 +12,7 @@ body {
 .page-padding {height:10px; width:100%;}
 
 .wrapper-light {
-    background-color: rgba(255, 255, 255, 0.39);
+    background-color: rgba(255, 255, 255, 0.61);
 }
 
 .profile-wrapper {
@@ -303,3 +303,22 @@ h2 {
 }
 
 .work_image:hover {opacity: 0.7;}
+
+.work_photo {
+    border-radius: 5px;
+	cursor: zoom-in;
+	transition: 0.3s;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.work_photo:hover {opacity: 0.7;}
+
+.large_work_photo{
+	cursor: zoom-out;
+	margin: 10% 10%;
+	display: block;
+	text-align:center;
+}
