@@ -4,14 +4,7 @@
 
 
 body {
-	/*background:#e0e6d3;*/
-	/*background-image:url( 'images/materials/page_bg.gif' );*/
-	/*background-repeat:repeat-x;*/
-	background-color: rgb(220, 251, 255);
-	background-image:url( 'images/bg.jpg' );
-	background-repeat:no-repeat;
-	background-position: center top; 
-	background-size: auto, 700px;
+	background-color: rgb(240, 253, 255);
 	margin: 0 auto;	
 	font-family:'Inconsolata',georgia,times,serif,'Annie Use Your Telescope','Lobster','Fascinate Inline','Gloria Hallelujah','Pacifico','Shadows Into Light','Bilbo','Calligraffitti','Open Sans';
 	}
@@ -150,7 +143,14 @@ h2 {
 	/*background:#afc9ff;*/
 	background-color: transparent;
 	}
-
+#bg_image {
+	padding-top: 30px;	
+	height:600px;	
+	background-image:url( 'images/bg.jpg' );
+	background-repeat:no-repeat;
+	background-position: center top; 
+	background-size: auto, 100%;
+	}
 #page0 {
 	height:600px;
 	width:80%;
@@ -204,7 +204,7 @@ h2 {
 	background-color: transparent;
 	}
 
-	#page4 {
+#page4 {
 		/*height:1100px;*/
 		width:80%;
 		padding-top: 100px;
@@ -215,7 +215,7 @@ h2 {
 		margin-right: 10%;
 		/*background:#777cdc;*/
 		background-color: transparent;
-		}
+	}
 
 #page_end {
 	width:80%;
@@ -242,7 +242,7 @@ h2 {
 	 */
 
 	.project {
-	    background-color: white;
+	    background-color: rgba(255, 255, 255, 0.678);
 	    margin-top: 10px;
 			margin-left: 5%;
 			margin-right: 5%;
@@ -251,6 +251,12 @@ h2 {
 	    -moz-border-radius: 2px;
 	    border-radius: 2px;
 	    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.12);
+	}
+	.artwork {
+	    margin-top: 10px;
+			margin-left: 5%;
+			margin-right: 5%;
+	    padding: 5px;
 	}
 
 	.thumbnail {
@@ -287,7 +293,13 @@ h2 {
 .work_image {
     border-radius: 5px;
     cursor: pointer;
-    transition: 0.3s;
+	transition: 0.3s;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	
+	
 }
 
 .work_image:hover {opacity: 0.7;}

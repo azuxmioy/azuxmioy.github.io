@@ -9,13 +9,10 @@
     <link rel="stylesheet" type="text/css" href="main.css" />
 
 
-<script type='text/javascript' src='js/softscroll.js'></script>
-
-  <link id='redux-google-fonts-css' href='//fonts.googleapis.com/css?family=Fascinate+Inline|Lobster|Annie+Use+Your+Telescope|Inconsolata|Gloria+Hallelujah|Pacifico|Shadows+Into+Light|Bilbo|Calligraffitti' rel='stylesheet' type='text/css'>
+<link id='redux-google-fonts-css' href='//fonts.googleapis.com/css?family=Fascinate+Inline|Lobster|Annie+Use+Your+Telescope|Inconsolata|Gloria+Hallelujah|Pacifico|Shadows+Into+Light|Bilbo|Calligraffitti' rel='stylesheet' type='text/css'>
 	<!--To use google font in github, use href='//fonts.googleapis...' instead of href='http//fonts.googleapis...' -->
 	<!-- <link id='redux-google-fonts-css' href='http://fonts.googleapis.com/css?family=Fascinate+Inline|Lobster|Annie+Use+Your+Telescope|Inconsolata|Gloria+Hallelujah|Pacifico|Shadows+Into+Light|Bilbo|Calligraffitti' rel='stylesheet' type='text/css'> -->
-    
-
+        
 
 <script>
    function showhide(id) {
@@ -55,12 +52,13 @@
 
 </head>
 <body>        
-
-<script type='text/javascript' src="js/modal.js"></script>  
+<a name="home"></a>
         
 <div id="page-wrap">
 
-  <a name="home"></a>
+
+  <div id="bg_image">  
+
   <div id="page0">
 
     <div class="row vertical-align">
@@ -74,11 +72,13 @@
         <div class="row">
 
           <div class="col-sm-10 text-left" style="color:#000000">
-            <p><b><h2><a style="color:black; text-decoration: none; font-weight: bold;">Hsuan-I Ho</a></h2></b></p>
+            <p><b><h2><a style="color:rgb(236, 236, 236); text-decoration: none; font-weight: bold;">Hsuan-I Ho</a></h2></b></p>
           </div>
           <div class="col-sm-10 text-left">
-            <p><b><h3><a style="color:#222222; text-decoration: none;" target="_blank">Bachelor of Science in </a> <a style="color:#222222; text-decoration: none;" target="_blank" href="https://web.ee.ntu.edu.tw/eng/index.php">Electrical Engineering</a><br>
-                <a style="color:#222222; text-decoration: none;" target="_blank">at </a> <a style="color:#222222; text-decoration: none;" target="_blank" href="http://www.ntu.edu.tw/english/index.html">National Taiwan University</a></h3></b></p>
+            <p><b><h3>
+                <span style="color:#aaaaaa; text-decoration: none;">Bachelor of Science in <a style="color:#aaaaaa; text-decoration: none;" target="_blank" href="https://web.ee.ntu.edu.tw/eng/index.php">Electrical Engineering</a><br>
+                at <a style="color:#aaaaaa; text-decoration: none;" target="_blank" href="http://www.ntu.edu.tw/english/index.html">National Taiwan University</a></span>
+            </h3></b></p>
           </div>
 
 
@@ -121,13 +121,20 @@
             </div>
         </div>
     
-  </div>
+  </div>  <!--END page0-->
+  
+  </div>   <!--END bg-->
   <!-- ================================================== -->
   <!--END page0-->
   <!-- ================================================== -->
   <a name="about"></a>
   <!-- <div class="horizontal-line"/></div> -->
-
+    <div style="text-align: right;">        
+        <span style="color:rgb(9, 2, 65); font-family:Annie Use Your TelescopeAnn;">
+            <p>Photo took in Kobe, Japan. 2016</p>
+        </span>
+    </div>
+    
 	<div id="page1">
 		<div class="page-padding"></div>
     <div style="text-align: center;">
@@ -294,39 +301,60 @@
             <h1><b>Selected Works</b></h1>
         </span>
     </div>
+    <div class="artwork" style="text-align: center;">
+        
+        <a type="button"  data-toggle="modal" data-target="#youtubeVideo">
+            <img id="Image1" class="work_image" src="images/artwork/vfx.jpg" width="320" height="180">            
+        </a>
+        <a type="button"  data-toggle="modal" data-target="#youtubeVideo2">
+            <img id="Image2" class="work_image" src="images/artwork/dclab.jpg" width="320" height="180">            
+        </a>
+        <a type="button"  data-toggle="modal" data-target="#youtubeVideo2">
+            <img id="Image3" class="work_image" src="images/artwork/dclab.jpg" width="320" height="180">            
+        </a>
 
-    <!-- Trigger the Modal -->
-    <img id="Image1" class="work_image" src="images/logos/TokyoTech.png" width="300" height="200">
+        <!-- Modal -->
+        <div class="modal fade" id="youtubeVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width: 900px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">VFX</h4>
+                    </div>
+                    <div class="modal-body">
+                        <iframe src="https://drive.google.com/file/d/0B3ADjmYT6aqMZXVSeEgtenVUc00/preview" width="848" height="480" allowfullscreen></iframe>
+                    </div>
+                    <div class="modal-footer">
 
-    <!-- The Modal -->
-    <div id="Modal1" class="modal">
-        <span class="close">&times;</span>
-        <iframe width="720" height='480' src="https://www.youtube.com/embed/LVhEpcPS0dw" frameborder="0" gesture="media" allow="encrypted-media" style="display:block" allowfullscreen></iframe>
-    </div>
-
-    <a type="button"  data-toggle="modal" data-target="#youtubeVideo">
-        <img id="Image1" class="work_image" src="images/logos/TokyoTech.png" width="300" height="200">            
-    </a>
-          
-          <!-- Modal -->
-          <div class="modal fade" id="youtubeVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/FPPcfwnZVXc" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
-                </div>
-                <div class="modal-footer">
-
-                </div>
-              </div>
             </div>
-          </div>
+        </div>
 
-    </div>
+        <div class="modal fade" id="youtubeVideo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+            <div class="modal-dialog" style="width: 900px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel2">DCLAB</h4>
+                    </div>
+                    <div class="modal-body">
+                        <iframe src="https://drive.google.com/file/d/0B3ADjmYT6aqMdUhMSXByUTZyRWM/preview" width="848" height="480" allowfullscreen></iframe>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div><!-- end of artwork -->
+
+    </div><!-- end of page3 -->
 
     
 
@@ -354,7 +382,7 @@
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 <script type='text/javascript' src="js/youtube.js"></script>
-<script type='text/javascript' src='js/modal.js'></script>
+
 
 </body>
 </html>
