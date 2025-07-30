@@ -1,808 +1,507 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en" class="scroll-smooth">
 <head>
-<title>Hsuan-I (Sean) Ho</title>
-<meta charset='UTF-8' />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hsuan-I (Sean) Ho | Personal Webpage</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="main.css" />
-
-
-<link id='redux-google-fonts-css' href='//fonts.googleapis.com/css?family=Fascinate+Inline|Lobster|Annie+Use+Your+Telescope|Inconsolata|Gloria+Hallelujah|Pacifico|Shadows+Into+Light|Bilbo|Calligraffitti' rel='stylesheet' type='text/css'>
-	<!--To use google font in github, use href='//fonts.googleapis...' instead of href='http//fonts.googleapis...' -->
-	<!-- <link id='redux-google-fonts-css' href='http://fonts.googleapis.com/css?family=Fascinate+Inline|Lobster|Annie+Use+Your+Telescope|Inconsolata|Gloria+Hallelujah|Pacifico|Shadows+Into+Light|Bilbo|Calligraffitti' rel='stylesheet' type='text/css'> -->
-        
-
-<script>
-   function showhide(id) {
-     var e = document.getElementById(id);
-     e.style.display = (e.style.display == 'block') ? 'none' : 'block';
-   }
-</script>
-
-<script>
-		var slideIndex = 1;
-		showDivs(slideIndex);
-
-		function plusDivs(n) {
-		  showDivs(slideIndex += n);
-		}
-
-		function currentDiv(n) {
-		  showDivs(slideIndex = n);
-		}
-
-		function showDivs(n) {
-		  var i;
-		  var x = document.getElementsByClassName("mySlides");
-		  var dots = document.getElementsByClassName("demo");
-		  if (n > x.length) {slideIndex = 1}
-		  if (n < 1) {slideIndex = x.length}
-		  for (i = 0; i < x.length; i++) {
-		     x[i].style.display = "none";
-		  }
-		  for (i = 0; i < dots.length; i++) {
-		     dots[i].className = dots[i].className.replace(" w3-white", "");
-		  }
-		  x[slideIndex-1].style.display = "block";
-		  dots[slideIndex-1].className += " w3-white";
-		}
-</script>
-
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .hero-bg {
+            /* Placeholder background image */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('images/bg2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        /* The .section-title class has been removed from here */
+        .entry-card {
+            @apply bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300;
+        }
+    </style>
 </head>
-<body>        
-<a name="home"></a>
+<body class="text-slate-700">
+
+    <header class="hero-bg text-white min-h-screen flex flex-col items-center justify-center p-4">
+        <div class="text-center">
+            <img src="images/profile/crap.jpg" alt="Profile Picture" class="w-36 h-36 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-white/50 shadow-lg">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">Hsuan-I Ho</h1> 
+            <img src="images/profile/ho.png" class="w-60 h-auto mx-auto shadow-lg">
+            <p class="mt-2 md:mt-4 text-lg md:text-xl text-slate-300">PhD Candidate at ETH Zürich</p>
+        </div>
         
-<div id="page-wrap">
-
-
-  <div id="bg_image">  
-
-  <div id="page0">
-
-    <div class="row vertical-align">
-      <div class="col-sm-4 text-right">
-				<p>
-					<img src="images/profile/crap.jpg" id="circle"/><br><br>
-				</p>
-			</div>
-      <div class="col-sm-8 text-left">
-        <div class="row">
-
-          <div class="col-sm-10 text-left hriszon-align" style="color:#000000">
-            <p><b><h2><a style="color:rgb(236, 236, 236); text-decoration: none; font-weight: bold;">Hsuan-I Ho</a><img src="images/profile/ho.png"  width="120px" align="middle" style="position: relative; top: -2px; left: 20px;"/>
-            </h2></b></p>
-          </div>
-          <div class="col-sm-10 text-left">
-            <p><b><h4>
-
-              <span style="color:#aaaaaa; text-decoration: none;">Doctoral student at <a style="color:#aaaaaa; text-decoration: none;" target="_blank" href="https://www.ethz.ch/en.html">ETH Zürich</a></span>
-            </h4></b></p>
-          </div>
-
-
-					<div class="col-sm-10 text-left" style="color:#000000">
-						<table align="left" style="width:70%;">
-							<tr>
-								<td width="5%" align="center"><p><b><h5><img src="images/icons/email.png" width="75%"/> <!--Email:--> </h5></b></p></td>
-								<td colspan="3" width="80%" align="left"><p><h5>
-                                    hohs <font color="#aaaaaa">[at]</font> ethz.ch<br>   
-                                    azuxmioy <font color="#aaaaaa">[at]</font> gmail.com<br>
-                               
-								</h5></p></td>
-							</tr>
-							<tr>
-                
-                  <td width="5%" align="center"><p><b><h5><img src="images/icons/cv.png" width="75%"/></h5></b></p></td>
-								  <td width="20%" align="left"><p><h5><a style="color:#aaaaaa; text-decoration: none;" target="_blank" href="https://files.ait.ethz.ch/people/hohs/ho_cv_2024.pdf">CV</a></h5></p></td>
-                
-                  <td width="5%" align="center"><p><b><h5><img src="images/icons/twitter.png" width="85%"/></h5></b></p></td>
-                  <td width="20%" align="left"><p><h5><a style="color:#aaaaaa; text-decoration: none;" target="_blank" href="https://twitter.com/hohs_ETH">Twitter</a></h5></p></td>
-                  
-                  <td width="5%" align="center"><p><b><h5><img src="images/icons/linkedin.png" width="85%"/></h5></b></p></td>
-								  <td width="20%" align="left"><p><h5><a style="color:#aaaaaa; text-decoration: none;" target="_blank" href="https://www.linkedin.com/in/hsuan-i-ho-82a514165/">Linkedin</a></h5></p></td>
-                
-                  <td width="5%" align="center"><p><b><h5><img src="images/icons/git.png" width="85%"/></h5></b></p></td>
-								  <td width="20%" align="left"><p><h5><a style="color:#aaaaaa; text-decoration: none;" target="_blank" href="https://github.com/azuxmioy">GitHub</a></h5></p></td>
-							</tr>
-						</table>
-                    </div>
+        <div class="mt-8 bg-black/30 backdrop-blur-sm p-4 rounded-xl">
+            <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6">
+                <a href="mailto:hohs@ethz.ch" class="flex items-center gap-2 hover:text-sky-300 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    Email
+                </a>
+                <a href="https://files.ait.ethz.ch/people/hohs/cv_ho_2025.pdf" target="_blank" class="flex items-center gap-2 hover:text-sky-300 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    CV
+                </a>
+                <a href="https://github.com/azuxmioy" target="_blank" class="flex items-center gap-2 hover:text-sky-300 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/hsuan-i-ho-82a514165/" target="_blank" class="flex items-center gap-2 hover:text-sky-300 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    LinkedIn
+                </a>
+            </div>
         </div>
-      </div>
-      
-    </div>
-    <br>
-        <div class="row vertical-align">
-            <div class="col-sm-8 text-left">
-                <div class = "profile-wrapper wrapper-light">
-                    <div style="text-align:justify; font-family:Open Sans;">
-                        <h4 style="color:#000000; text-align:center;">Bio</h4>
-                        <p style="color:#000000; font-size: 110%; text-decoration: none;">
-                          I am a third-year PhD student supervised by Prof. Dr. Otmar Hilliges. I obtained my Computer Science Master's degree at ETH Zürich in 2021.
-                          My research interests lie in human-centric computer vision ranging from basic understandings of human-centric videos, such as human recognition and pose estimation, to more complicated generative tasks, such as motion prediction and full-body generation.
-                          Recently, I am interested in leveraging generative 3D avatars to facilitate human pose estimation and 3D understanding.
-                        </p></div>
+        
+        <div class="absolute bottom-10 animate-bounce">
+            <a href="#main-content">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg>
+            </a>
+        </div>
+    </header>
+
+    <main id="main-content" class="container mx-auto max-w-5xl px-4 py-16 space-y-20">
+        
+        <section id="bio">
+            <h2 class="text-3xl font-bold text-slate-800 mb-8 border-b-2 border-slate-200 pb-2">About Me</h2>
+            <div class="bg-white p-6 rounded-xl shadow-sm text-lg leading-relaxed">
+                <p>
+                    I am a third-year PhD student at ETH Zürich, supervised by Prof. Dr. Otmar Hilliges. I obtained my Computer Science Master's degree at ETH Zürich in 2021. My research interests lie in human-centric computer vision, ranging from basic understandings of human-centric videos, such as human recognition and pose estimation, to more complicated generative tasks, such as motion prediction and full-body generation. Recently, I have been focused on leveraging generative 3D avatars to facilitate human pose estimation and 3D understanding.
+                </p>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2 class="text-3xl font-bold text-slate-800 mb-8 border-b-2 border-slate-200 pb-2">Education</h2>
+            <div id="education-list" class="space-y-8">
                 </div>
-            </div>
-        </div>
-    
-  </div>  <!--END page0-->
-  
-  </div>   <!--END bg-->
-  <!-- ================================================== -->
-  <!--END page0-->
-  <!-- ================================================== -->
-  <a name="about"></a>
-  <!-- <div class="horizontal-line"/></div> -->
-    <div style="text-align: right;">        
-        <span style="color:rgb(9, 2, 65); font-family:'Annie Use Your Telescope';">
-            <p>Photo took in Kobe, Japan. 2016</p>
-        </span>
-    </div>
- 
-  <!------------------------------------------------------------->
-	<div id="page2">
-		<div class="page-padding"></div>
-    <div style="text-align: center;">
-    <span style="color:#D2691E; font-family:Open Sans;">
-      <h1><b>Education</b></h1>
-    </span>
-    </div>
-    <div class="project" style="font-size: 16px;">
+        </section>
 
-       <div class="row vertical-align">
-            <div class="col-sm-3 text-right"  style="padding:0px 0px 0px 15px; margin: 0 0 0 auto"><img src="images/logos/ethz.png" width="80%"/></div>
-            <div class="col-sm-8 text-left">PhD student at the <a style="color:black; text-decoration: none;" target="_blank" href="http://www.ait.ethz.ch/">Advanced Interactive Technologies Lab</a>,<br>
-              <a style="color:black; text-decoration: none;" target="_blank" href="https://www.ethz.ch/en.html">ETH Zürich</a><br>
-              <a style="color:black; text-decoration: none;" >Advisor : </a> <a style="color:rgb(113, 197, 223); text-decoration: none;" target="_blank" href="https://ait.ethz.ch/people/">Prof. Dr. Otmar Hilliges</a><br>
+        <section id="experience">
+            <h2 class="text-3xl font-bold text-slate-800 mb-8 border-b-2 border-slate-200 pb-2">Practical Experience</h2>
+            <div id="experience-list" class="space-y-8">
+                </div>
+        </section>
 
-              <p style="color:#969696">[May.2022 - ]</p>
-            </div>
-          </div>
-          <br>
+        <section id="publications">
+            <h2 class="text-3xl font-bold text-slate-800 mb-8 border-b-2 border-slate-200 pb-2">Publications</h2>
+            <div id="publications-list" class="space-y-8">
+                </div>
+        </section>
 
+        <section id="selected-works">
+            <h2 class="text-3xl font-bold text-slate-800 mb-8 border-b-2 border-slate-200 pb-2">Selected Works</h2>
+            <div id="works-list" class="space-y-8">
+                </div>
+        </section>
 
-        <div class="row vertical-align">
-            <div class="col-sm-3 text-right"  style="padding:0px 0px 0px 15px; margin: 0 0 0 auto"><img src="images/logos/ethz.png" width="80%"/></div>
-            <div class="col-sm-8 text-left">Master of Science in <a style="color:black; text-decoration: none;" target="_blank" href="https://www.inf.ethz.ch/">Computer Science</a>,<br>
-              <a style="color:black; text-decoration: none;" target="_blank" href="https://www.ethz.ch/en.html">ETH Zürich</a>
-              <p style="color:#969696">[September.2018 - June.2021]</p>
-            </div>
-          </div>
-          <br>
+    </main>
 
+    <footer class="bg-slate-800 text-slate-400 text-center p-6 mt-16">
+        <p>© <span id="copyright-year"></span> Hsuan-I Ho. All rights reserved.</p>
+        <p class="text-sm mt-1">Template refactored with help from Gemini. Last updated: July 2025.</p>
+    </footer>
 
-        <div class="row vertical-align">
-            <div class="col-sm-3 text-right"><img src="images/logos/NTU.png" id="reg"/></div>
-            <div class="col-sm-8 text-left">Bachelor of Science in <a style="color:black; text-decoration: none;" target="_blank" href="https://web.ee.ntu.edu.tw/eng/index.php">Electrical Engineering</a>,<br>
-              <a style="color:black; text-decoration: none;" target="_blank" href="http://www.ntu.edu.tw/english/index.html">National Taiwan University</a>
-              <p style="color:#969696">[September.2012 - June.2016]</p>
-            </div>
-          </div>
-          <br>
+    <script>
+        // --- DATA ---
+        // To add a new entry, simply copy an object and fill in your new data.
 
+        const publications = [
+            {
+                title: 'PHD: Personalized 3D Human Body Fitting with Point Diffusion',
+                authors: '<u>Hsuan-I Ho</u>, Chen Guo, Po-Chen Wu, Ivan Shugurov, Chengcheng Tang, Abhay Mittal, Sizhe An, Manuel Kaufmann*, Linguang Zhang*',
+                conference: 'ICCV 2025',
+                image: 'https://files.ait.ethz.ch/projects/PHD/bike.gif',
+                links: {
+                    Paper: '#',
+                    'Project Page': 'https://phd-pose.github.io/',
+                    Code: '#',
+                    Video: '#'
+                },
+                bibtex: `@inproceedings{ho2025phd,
+    title={PHD: Personalized 3D Human Body Fitting with Point Diffusion},
+    author={Ho, Hsuan-I and Guo, Chen and Wu, Po-Chen and Shugurov, Ivan and Tang, Chengcheng and Mittal, Abhay and An, Sizhe and Kaufmann, Manuel and Zhang, Linguang}, 
+    booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    year={2025}
+}`
+            },
+            {
+                title: 'ReMu: Reconstructing Multi-layer 3D Clothed Human from Images',
+                authors: 'Onat Vuran, <u>Hsuan-I Ho</u>',
+                conference: 'BMVC 2025',
+                image: 'https://files.ait.ethz.ch/projects/ReMu/teaser.jpg',
+                links: {
+                    Paper: '#',
+                    'Project Page': 'https://eth-ait.github.io/ReMu',
+                    Code: '#',
+                    Video: '#'
+                },
+                bibtex: `@inproceedings{vuran2025remu,
+    title={ReMu: Reconstructing Multi-layer 3D Clothed Human from Images},
+    author={Vuran, Onat and Ho, Hsuan-I},
+    booktitle={British Machine Vision Conference (BMVC)},
+    year={2025}
+}`
+            },
+            {
+                title: 'HSR: Holistic 3D Human-Scene Reconstruction from Monocular Videos',
+                authors: 'Lixin Xue, Chen Guo, Chengwei Zheng, Fangjinhua Wang, Tianjian Jiang, <u>Hsuan-I Ho</u>, Manuel Kaufmann, Jie Song, Otmar Hilliges',
+                conference: 'ECCV 2024',
+                image: 'images/projects/hsr.gif',
+                links: {
+                    Paper: 'https://files.ait.ethz.ch/projects/hsr/hsr_paper_main.pdf',
+                    'Project Page': 'https://lxxue.github.io/human-scene-recon/',
+                    Code: 'https://github.com/lxxue/HSR',
+                    Video: 'https://www.youtube.com/watch?v=SIT4ErJpDZA'
+                },
+                bibtex: `@inproceedings{xue2024hsr,
+    title={HSR: Holistic 3D Human-Scene Reconstruction from Monocular Videos},
+    author={Xue, Lixin and Guo, Chen and Zheng, Chengwei and Wang, Fangjinhua and Jiang, Tianjian and Ho, Hsuan-I and Kaufmann, Manuel and Song, Jie and Hilliges Otmar},
+    booktitle={European Conference on Computer Vision (ECCV)},
+    year={2024}
+}`
+            },
+            {
+                title: 'SiTH: Single-view Textured Human Reconstruction with Image-Conditioned Diffusion',
+                authors: '<u>Hsuan-I Ho</u>, Jie Song, Otmar Hilliges',
+                conference: 'CVPR 2024',
+                image: 'https://files.ait.ethz.ch/projects/SiTH/teaser.gif',
+                links: {
+                    Paper: 'https://openaccess.thecvf.com/content/CVPR2024/papers/Ho_SiTH_Single-view_Textured_Human_Reconstruction_with_Image-Conditioned_Diffusion_CVPR_2024_paper.pdf',
+                    Supplementary: 'https://openaccess.thecvf.com/content/CVPR2024/supplemental/Ho_SiTH_Single-view_Textured_CVPR_2024_supplemental.pdf',
+                    'Project Page': 'https://sith-diffusion.github.io/',
+                    Code: 'https://github.com/SiTH-Diffusion/SiTH',
+                    Video: 'https://youtu.be/gixakzI9UcM'
+                },
+                bibtex: `@inproceedings{ho2024sith,
+    title={SiTH: Single-view Textured Human Reconstruction with Image-Conditioned Diffusion},
+    author={Ho, Hsuan-I and Song, Jie and Hilliges, Otmar},
+    booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+    year={2024},
+    pages={538-549}
+}`
+            },
+            {
+                title: '4D-DRESS: A 4D Dataset of Real-world Human Clothing with Semantic Annotations',
+                authors: 'Wenbo Wang*, <u>Hsuan-I Ho*</u>, Chen Guo, Boxiang Rong, Artur Grigorev, Jie Song, Juan Jose Zarate, Otmar Hilliges (* equal contribution)',
+                conference: 'CVPR 2024 Highlight',
+                image: 'https://files.ait.ethz.ch/projects/4d-dress/teaser.gif',
+                links: {
+                    Paper: 'https://openaccess.thecvf.com/content/CVPR2024/papers/Wang_4D-DRESS_A_4D_Dataset_of_Real-World_Human_Clothing_With_Semantic_CVPR_2024_paper.pdf',
+                    'Project Page': 'https://eth-ait.github.io/4d-dress/',
+                    Code: 'https://github.com/eth-ait/4d-dress'
+                },
+                bibtex: `@inproceedings{wang20244ddress,
+    title={4D-DRESS: A 4D Dataset of Real-world Human Clothing with Semantic Annotations},
+    author={Wang, Wenbo and Ho, Hsuan-I and Guo, Chen and Rong, Boxiang and Grigorev, Artur and Song, Jie and Zarate, Juan Jose and Hilliges, Otmar},
+    booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+    year={2024},
+    pages={550-560}
+}`
+            },
+            {
+                title: 'Learning Locally Editable Virtual Humans',
+                authors: '<u>Hsuan-I Ho</u>, Lixin Xue, Jie Song, Otmar Hilliges',
+                conference: 'CVPR 2023',
+                image: 'https://files.ait.ethz.ch/projects/custom-humans/teaser.gif',
+                links: {
+                    Paper: 'https://openaccess.thecvf.com/content/CVPR2023/papers/Ho_Learning_Locally_Editable_Virtual_Humans_CVPR_2023_paper.pdf',
+                    'Project Page': 'https://custom-humans.github.io/',
+                    Code: 'https://github.com/custom-humans/editable-humans'
+                },
+                bibtex: `@inproceedings{ho2023custom,
+    title={Learning Locally Editable Virtual Humans},
+    author={Ho, Hsuan-I and Xue, Lixin and Song, Jie and Hilliges, Otmar},
+    booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+    year={2023}
+}`
+            },
+             {
+                title: 'Render In-between: Motion Guided Video Synthesis for Action Interpolation',
+                authors: '<u>Hsuan-I Ho</u>, Xu Chen, Jie Song, Otmar Hilliges',
+                conference: 'BMVC 2021',
+                image: 'images/projects/thesis.gif',
+                links: {
+                    Paper: 'https://www.bmvc2021-virtualconference.com/assets/papers/0327.pdf',
+                    Code: 'https://github.com/azuxmioy/HumanSloMo'
+                },
+                bibtex: `@inproceedings{ho2021render,
+    title = {Render In-between: Motion Guided Video Synthesis for Action Interpolation},
+    author = {Ho, Hsuan-I and Chen, Xu and Song, Jie and Hilliges, Otmar},
+    booktitle = {British Machine Vision Conference (BMVC)},
+    year = {2021}
+}`
+            },
+            {
+                title: 'READ: Reciprocal Attention Discriminator for Image-to-Video Re-Identification',
+                authors: 'Minho Shim, <u>Hsuan-I Ho</u>, Jinhyung Kim, Dongyoon Wee',
+                conference: 'ECCV 2020',
+                image: 'images/projects/eccv20_thumb.jpg',
+                links: {
+                    Paper: 'https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123590324.pdf',
+                    Code: 'https://github.com/minostauros/READ'
+                },
+                bibtex: `@inproceedings{shim20eccv,
+    title = {READ: Reciprocal Attention Discriminator for Image-to-Video Re-Identification},
+    author = {Shim, Minho and Ho, Hsuan-I and Kim, Jinhyung and Wee, Dongyoon},
+    booktitle = {European Conference on Computer Vision (ECCV)},
+    year = {2020}
+}`
+            },
+            {
+                title: 'Learning from Dances: Pose-Invariant Re-Identification for Multi-Person Tracking',
+                authors: '<u>Hsuan-I Ho</u>, Minho Shim, Dongyoon Wee',
+                conference: 'ICASSP 2020',
+                image: 'images/projects/dancereid.gif',
+                links: {
+                    Paper: 'https://ieeexplore.ieee.org/abstract/document/9054086',
+                    Code: 'https://github.com/azuxmioy/ST-ReIDNet',
+                    'Dataset': 'https://github.com/azuxmioy/DanceReID',
+                    Video: 'https://youtu.be/E93Pk1TrlTo'
+                },
+                bibtex: `@inproceedings{ho20icassp,
+    title = {Learning from Dances: Pose-Invariant Re-Identification for Multi-Person Tracking},
+    author = {Ho, Hsuan-I and Shim, Minho and Wee, Dongyoon},
+    booktitle = {International Conference on Acoustics, Speech, and Signal Processing (ICASSP)},
+    year = {2020}
+}`
+            },
+            {
+                title: 'Summarizing First-Person Videos from Third Persons’ Points of View',
+                authors: '<u>Hsuan-I Ho</u>, Wei-Chen Chiu, Yu-Chiang Frank Wang',
+                conference: 'ECCV 2018',
+                image: 'images/projects/eccv18_thumb.jpg',
+                links: {
+                    Paper: 'papers/0080.pdf',
+                    Supplementary: 'papers/0080-supp.pdf',
+                    Code: 'https://github.com/azuxmioy/fpvsum'
+                },
+                bibtex: `@inproceedings{ho18eccv,
+    title = {Summarizing First-Person Videos from Third Persons’ Points of View},
+    author = {Ho, Hsuan-I and Chiu, Wei-Chen and Wang, Yu-Chiang Frank},
+    booktitle = {European Conference on Computer Vision (ECCV)},
+    year = {2018}
+}`
+            },
+        ];
 
-      <div class="row vertical-align">
-        <div class="col-sm-3 text-right"><img src="images/logos/TokyoTech.png" id="reg"/></div>
-        <div class="col-sm-8 text-left">
-					Exchange Student in <a style="color:black; text-decoration: none;" target="_blank" href="https://educ.titech.ac.jp/cs/eng/">Department of Computer Science</a>,<br>
-                    <a style="color:black; text-decoration: none;" target="_blank" href="https://www.titech.ac.jp/english/">Tokyo Institute of Technology</a><br>
-                    <a style="color:black; text-decoration: none;" >Advisor : </a> <a style="color:rgb(113, 197, 223); text-decoration: none;" target="_blank" href="https://sites.google.com/site/koike/Home/Profile">Prof. Hideki Koike</a>
-                    
-          <p style="color:#969696">[September.2015 - March.2016]</p>
-        </div>
-      </div>
-      <br>
-
-
-      <div class="row vertical-align">
-        <div class="col-sm-3 text-right"><img src="images/logos/CKHS.png" id="reg"/></div>
-        <div class="col-sm-8 text-left"><a style="color:black; text-decoration: none;" target="_blank" href="http://web.ck.tp.edu.tw/web2007en/index.php">Taipei Municipal Jianguo High School, Taipei, Taiwan</a>
-          <p style="color:#969696">[September.2009 - June.2012]</p>
-        </div>
-      </div>
-
-    </div>
-
-	</div>
-
-
-	<div id="page1">
-		<div class="page-padding"></div>
-    <div style="text-align: center;">
-    <span style="color:#D2691E; font-family:Open Sans;">
-      <h1><b>Practical Experience</b></h1>
-    </span>
-    </div>
-    <div class="project" style="font-size: 16px;">
-
-
-      <div class="row vertical-align">
-        <div class="col-sm-3 text-right"  style="padding:0px 0px 0px 15px; margin: 0 0 0 auto"><img src="images/logos/ethz.png" width="80%"/></div>
-        <div class="col-sm-8 text-left">Scientific Assistant, <br>
-          <a style="color:black; text-decoration: none;" target="_blank" href="https://ait.ethz.ch/index.php">Advanced Interactive Technologies Lab</a>,<br>
-          <a style="color:black; text-decoration: none;" target="_blank" href="https://www.inf.ethz.ch/">Department of Computer Science</a>,
-          <a style="color:black; text-decoration: none;" target="_blank" href="https://www.ethz.ch/en.html">ETH Zürich</a><br>
-          <a style="color:black; text-decoration: none;" >Advisor : </a> <a style="color:rgb(113, 197, 223); text-decoration: none;" target="_blank" href="https://ait.ethz.ch/people/">Dr. Jie Song, Prof. Dr. Otmar Hilliges</a>
-
-          <p style="color:#969696">[June.2021 - February.2022]</p>
-        </div>
-      </div>
-      <br>
-
-        <div class="row vertical-align">
-          <div class="col-sm-3 text-right"  style="padding:0px 0px 0px 15px; margin: 0 0 0 auto"><img src="images/logos/naver.png" width="80%"/></div>
-          <div class="col-sm-8 text-left">Research Intern<a style="color:black; text-decoration: none;" target="_blank"></a>,<br>
-            <a style="color:black; text-decoration: none;" target="_blank" href="https://clova.ai">Clova AI Research, NAVER Corp.</a>
-            <p style="color:#969696">[September.2019 - December.2019]</p>
-          </div>
-        </div>
-        <br>
-
-      <div class="row vertical-align">
-        <div class="col-sm-3 text-right"><img src="images/logos/SINICA.png" id="circle"/></div>
-        <div class="col-sm-8 text-left">Research Assistant,<br>
-          <a style="color:black; text-decoration: none;" taget="_blank" href="http://vllab.ee.ntu.edu.tw/">Vision and Learning Lab, National Taiwan University</a> / <br>
-            <a style="color:black; text-decoration: none;" target="_blank" href="https://www.sinica.edu.tw/en">Multimedia and Machine Learning Lab, Academia Sinica</a><br>
-            <a style="color:black; text-decoration: none;" >Advisor : </a> <a style="color:rgb(113, 197, 223); text-decoration: none;" target="_blank" href="http://www.ee.ntu.edu.tw/profile1?teacher_id=24037&p=3">Prof. Yu-Chiang Frank Wang</a>
-                    
-          <p style="color:#969696">[March.2017 - June.2018]</p>
-        </div>
-      </div>
-      <br>
-
-      <div class="row vertical-align">
-        <div class="col-sm-3 text-right"><img src="images/logos/NTU.png" id="reg_circle"/></div>
-        <div class="col-sm-8 text-left">Research Assistant,<br>
-           <a style="color:black; text-decoration: none;" target="_blank" href="http://vllab.ee.ntu.edu.tw/">Media IC and System Lab</a>,
-            <a style="color:black; text-decoration: none;" target="_blank" href="http://www.ntu.edu.tw/english/index.html">National Taiwan University</a><br>
-            <a style="color:black; text-decoration: none;" >Advisor : </a> <a style="color:rgb(113, 197, 223); text-decoration: none;" target="_blank" href="http://www.ee.ntu.edu.tw/profile?id=101">Prof. Shao-Yi Chien</a>
-            
-          <p style="color:#969696">[September.2016 - Janruary.2017]</p>
-        </div>
-      </div>
-      <br>    
-
-    </div>
-
-	</div>
-
-
-  <!-- ================================================== -->
-  <!--END page1-->
-  <!-- ================================================== -->
-
-  <a name="publications"></a>
-  <!-- <div class="horizontal-line"/></div> -->
-
-	<div id="page3">
-		<div class="page-padding"></div>
-    <div style="text-align: center;">
-    <span style="color:#D2691E; font-family:'Open Sans';">
-      <h1><b>Publications</b></h1>
-    </span>
-    </div>
-
-
-    <div class="project" id="SiTH">
-      <div class="row vertical-align">
-        <div class="col-sm-4">
-          <div class="paper-teaser">
-            <img alt="teaser figure" class="thumbnail" src="https://files.ait.ethz.ch/projects/SiTH/teaser.gif" width="60%">
-          </div>
-        </div>
-        <div class="col-sm-8">
-          <h4>SiTH: Single-view Textured Human Reconstruction with Image-Conditioned Diffusion</h4>
-          <p class="authors">
-                        <u>Hsuan-I Ho</u>,
-                        <a style="color:black; text-decoration: none;">Jie Song, </a>
-                        <a style="color:black; text-decoration: none;">Otmar Hilliges</a>
-                    </p>
-          <p class="conference">
-            [<a style="color:blue;" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Ho_SiTH_Single-view_Textured_Human_Reconstruction_with_Image-Conditioned_Diffusion_CVPR_2024_paper.pdf" target="_blank">CVPR 2024</a>
-            (<a style="color:#969696;" href="javascript:showhide('SiTH_bib')">BibTeX</a>)]
-            [<a style="color:blue;" href="https://openaccess.thecvf.com/content/CVPR2024/supplemental/Ho_SiTH_Single-view_Textured_CVPR_2024_supplemental.pdf" target="_blank">Supplementary</a>]
-            [<a style="color:blue;" href="https://sith-diffusion.github.io/" target="_blank">Project Page</a>]
-            [<a style="color:blue;" href="https://github.com/SiTH-Diffusion/SiTH" target="_blank">Code</a>]
-            [<a style="color:blue;" href="https://youtu.be/gixakzI9UcM" target="_blank">Video</a>]
-
-          </p>
-          <div id="SiTH_bib" style="display:none;">
-            <p>
-              @inproceedings{ho2024sith,<br>
-                title={SiTH: Single-view Textured Human Reconstruction with Image-Conditioned Diffusion},<br>
-                author={Ho, Hsuan-I and Song, Jie and Hilliges, Otmar},<br>
-                booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},<br>
-                year={2024},<br>
-                pages={538-549}<br>
-              }
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-
-    <div class="project" id="4d-dress">
-      <div class="row vertical-align">
-        <div class="col-sm-4">
-          <div class="paper-teaser">
-            <img alt="teaser figure" class="thumbnail" src="https://files.ait.ethz.ch/projects/4d-dress/teaser.gif">
-          </div>
-        </div>
-        <div class="col-sm-8">
-          <h4>4D-DRESS: A 4D Dataset of Real-world Human Clothing with Semantic Annotations</h4>
-          <p class="authors">
-                        <a style="color:black; text-decoration: none;">Wenbo Wang*, </a>
-                        <u>Hsuan-I Ho*</u>,
-                        <a style="color:black; text-decoration: none;">Chen Guo, </a>
-                        <a style="color:black; text-decoration: none;">Boxiang Rong, </a>
-                        <a style="color:black; text-decoration: none;">Artur Grigorev, </a>
-                        <a style="color:black; text-decoration: none;">Jie Song, </a>
-                        <a style="color:black; text-decoration: none;">Juan Jose Zarate, </a>
-                        <a style="color:black; text-decoration: none;">Otmar Hilliges</a>
-                        </p>
-                        <p style="color:#969696;">(* indicates equal contribution.)</p>
-                    </p>
-          <p class="conference">
-            [<a style="color:blue;" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Wang_4D-DRESS_A_4D_Dataset_of_Real-World_Human_Clothing_With_Semantic_CVPR_2024_paper.pdf" target="_blank">CVPR 2024 Highlight</a>
-            (<a style="color:#969696;" href="javascript:showhide('dress_bib')">BibTeX</a>)]
-            [<a style="color:blue;" href="https://openaccess.thecvf.com/content/CVPR2024/supplemental/Wang_4D-DRESS_A_4D_CVPR_2024_supplemental.pdf" target="_blank">Supplementary</a>]
-            [<a style="color:blue;" href="https://eth-ait.github.io/4d-dress/" target="_blank">Project Page</a>]
-            [<a style="color:blue;" href="https://github.com/eth-ait/4d-dress" target="_blank">Code</a>]
-            [<a style="color:blue;" href="https://youtu.be/dEQ4dvO8BsE?si=6tDzXRG-x3MF34v5" target="_blank">Video</a>]
-
-          </p>
-          <div id="dress_bib" style="display:none;">
-            <p>
-              @inproceedings{wang20244ddress,<br>
-                title={4D-DRESS: A 4D Dataset of Real-world Human Clothing with Semantic Annotations},<br>
-                author={Wang, Wenbo and Ho, Hsuan-I and Guo, Chen and Rong, Boxiang and Grigorev, Artur and<br>
-                        Song, Jie and Zarate, Juan Jose and Hilliges, Otmar},<br>
-                booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},<br>
-                year={2024},<br>
-                pages={550-560}<br>
-              }
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-    <div class="project" id="CVPR2023">
-      <div class="row vertical-align">
-        <div class="col-sm-4">
-          <div class="paper-teaser">
-            <img alt="teaser figure" class="thumbnail" src="https://files.ait.ethz.ch/projects/custom-humans/teaser.gif">
-          </div>
-        </div>
-        <div class="col-sm-8">
-          <h4>Learning Locally Editable Virtual Humans</h4>
-          <p class="authors">
-                        <u>Hsuan-I Ho</u>,
-                        <a style="color:black; text-decoration: none;">Lixin Xue, </a>
-                        <a style="color:black; text-decoration: none;">Jie Song, </a>
-                        <a style="color:black; text-decoration: none;">Otmar Hilliges</a>
-
-                    </p>
-          <p class="conference">
-            [<a style="color:blue;" href="https://openaccess.thecvf.com/content/CVPR2023/papers/Ho_Learning_Locally_Editable_Virtual_Humans_CVPR_2023_paper.pdf" target="_blank">CVPR 2023</a>
-            (<a style="color:#969696;" href="javascript:showhide('CVPR2023_bib')">BibTeX</a>)]
-            [<a style="color:blue;" href="https://openaccess.thecvf.com/content/CVPR2023/supplemental/Ho_Learning_Locally_Editable_CVPR_2023_supplemental.pdf" target="_blank">Supplementary</a>]
-            [<a style="color:blue;" href="https://custom-humans.github.io/" target="_blank">Project Page</a>]
-            [<a style="color:blue;" href="https://github.com/custom-humans/editable-humans" target="_blank">Code</a>]
-            [<a style="color:blue;" href="https://youtu.be/aT8ql5hB3ZM" target="_blank">Video</a>]
-
-          </p>
-          <div id="CVPR2023_bib" style="display:none;">
-            <p>
-@inproceedings{ho2023custom,<br>
-    title={Learning Locally Editable Virtual Humans},<br>
-    author={Ho, Hsuan-I and Xue, Lixin and Song, Jie and Hilliges, Otmar},<br>
-    booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},<br>
-    year={2023}<br>
-  }
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-    <div class="project" id="BMVC2021">
-      <div class="row vertical-align">
-        <div class="col-sm-4">
-          <div class="paper-teaser">
-            <img alt="teaser figure" class="thumbnail" src="images/projects/thesis.gif">
-          </div>
-        </div>
-        <div class="col-sm-8">
-          <h4>Render In-between: Motion Guided Video Synthesis for Action Interpolation</h4>
-          <p class="authors">
-                        <u>Hsuan-I Ho</u>,
-                        <a style="color:black; text-decoration: none;">Xu Chen, </a>
-                        <a style="color:black; text-decoration: none;">Jie Song, </a>
-                        <a style="color:black; text-decoration: none;">Otmar Hilliges</a>
-
-                    </p>
-          <p class="conference">
-            [<a style="color:blue;" href="https://www.bmvc2021-virtualconference.com/assets/papers/0327.pdf" target="_blank">BMVC 2021</a>
-            (<a style="color:#969696;" href="javascript:showhide('BMVC2021_bib')">BibTeX</a>)]
-            [<a style="color:blue;" href="https://www.bmvc2021-virtualconference.com/assets/supp/0327_supp.zip" target="_blank">Supplementary</a>]
-            [<a style="color:blue;" href="https://github.com/azuxmioy/HumanSloMo" target="_blank">Code</a>]
-
-          </p>
-          <div id="BMVC2021_bib" style="display:none;">
-            <p>
-              @inproceedings{ho2021render,<br>
-                &nbsp;title = {Render In-between: Motion Guided Video Synthesis for Action Interpolation},<br>
-                &nbsp;author = {Ho, Hsuan-I and Chen, Xu and Song, Jie and Hilliges, Otmar},<br>
-                &nbsp;booktitle = {British Machine Vision Conference (BMVC)},<br>
-                &nbsp;year = {2021}<br>
-                }
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    
-    <div class="project" id="ECCV20"">
-      <div class="row vertical-align">
-        <div class="col-sm-4">
-          <div class="paper-teaser">
-            <img alt="teaser figure" class="thumbnail" src="images/projects/eccv20_thumb.jpg">
-          </div>
-        </div>
-        <div class="col-sm-8">
-          <h4>READ: Reciprocal Attention Discriminator for Image-to-Video Re-Identification</h4>
-          <p class="authors">
-                        <a style="color:black; text-decoration: none;">Minho Shim</a>,
-                        <u>Hsuan-I Ho</u>,
-                        <a style="color:black; text-decoration: none;">Jinhyung Kim</a>
-                        <a style="color:black; text-decoration: none;">Dongyoon Wee</a>
-                    </p>
-          <p class="conference">
-            [<a style="color:blue;" href="https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123590324.pdf" target="_blank">ECCV 2020</a>
-            (<a style="color:#969696;" href="javascript:showhide('ECCV20_bib')">BibTeX</a>)]
-            [<a style="color:blue;" href="https://github.com/minostauros/READ" target="_blank">Code</a>]
-
-          </p>
-          <div id="ECCV20_bib" style="display:none;">
-            <p>
-                  @inproceedings{shim20eccv,<br>
-                  &nbsp;title = {READ: Reciprocal Attention Discriminator for Image-to-Video Re-Identification},<br>
-                  &nbsp;author = {Shim, Minho and Ho, Hsuan-I and Kim, Jinhyung and Wee, Dongyoon},<br>
-                  &nbsp;booktitle = {European Conference on Computer Vision (ECCV)},<br>
-                  &nbsp;year = {2020}<br>
-                  }
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="project" id="ICASSP20">
-      <div class="row vertical-align">
-        <div class="col-sm-4">
-          <div class="paper-teaser">
-            <img alt="teaser figure" class="thumbnail" src="images/projects/icassp_thumb.jpg">
-          </div>
-        </div>
-        <div class="col-sm-8">
-          <h4>Learning from Dances: Pose-Invariant Re-Identification for Multi-Person Tracking</h4>
-          <p class="authors">
-                        <u>Hsuan-I Ho</u>,
-                        <a style="color:black; text-decoration: none;">Minho Shim</a>,
-                        <a style="color:black; text-decoration: none;">Dongyoon Wee</a>
-                    </p>
-          <p class="conference">
-            [<a style="color:blue;" href="https://ieeexplore.ieee.org/abstract/document/9054086" target="_blank">ICASSP 2020</a>
-            (<a style="color:#969696;" href="javascript:showhide('ICASSP20_bib')">BibTeX</a>)]
-            [<a style="color:blue;" href="https://github.com/azuxmioy/DanceReID" target="_blank">Dataset</a>]
-            [<a style="color:blue;" href="https://github.com/azuxmioy/ST-ReIDNet" target="_blank">Code</a>]
-            [<a style="color:blue;" href="https://youtu.be/E93Pk1TrlTo" target="_blank">Demo</a>]
-
-          </p>
-          <div id="ICASSP20_bib" style="display:none;">
-            <p>
-                  @inproceedings{ho20icassp,<br>
-                  &nbsp;title = {Learning from Dances: Pose-Invariant Re-Identification for Multi-Person Tracking},<br>
-                  &nbsp;author = {Ho, Hsuan-I and Shim, Minho and Wee, Dongyoon},<br>
-                  &nbsp;booktitle = {International Conference on Acoustics, Speech, and Signal Processing (ICASSP)},<br>
-                  &nbsp;year = {2020}<br>
-                  }
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="project" id="ECCV18">
-        <div class="row vertical-align">
-          <div class="col-sm-4">
-            <div class="paper-teaser">
-              <img alt="teaser figure" class="thumbnail" src="images/projects/eccv18_thumb.jpg">
-            </div>
-          </div>
-          <div class="col-sm-8">
-            <h4>Summarizing First-Person Videos from Third Persons’ Points of View</h4>
-            <p class="authors">
-                          <u>Hsuan-I Ho</u>,
-                          <a style="color:black; text-decoration: none;" target="_blank" href="https://walonchiu.github.io/">Wei-Chen Chiu</a>,
-                          <a style="color:black; text-decoration: none;" target="_blank" href="http://www.ee.ntu.edu.tw/profile1?teacher_id=24037&p=3">Yu-Chiang Frank Wang</a>
-                      </p>
-            <p class="conference">
-              [<a style="color:blue;" href="papers/0080.pdf" target="_blank">ECCV 2018</a>
-              (<a style="color:#969696;" href="javascript:showhide('ECCV2018_bib')">BibTeX</a>)]
-              [<a style="color:blue;" href="papers/0080-supp.pdf" target="_blank">Supplementary</a>]
-              [<a style="color:blue;" href="https://github.com/azuxmioy/fpvsum" target="_blank">Project Page</a>]
-
-            </p>
-            <div id="ECCV2018_bib" style="display:none;">
-              <p>
-                    @inproceedings{ho18eccv,<br>
-                    &nbsp;title = {Summarizing First-Person Videos from Third Persons’ Points of View},<br>
-                    &nbsp;author = {Ho, Hsuan-I and Chiu, Wei-Chen and Wang, Yu-Chiang Frank},<br>
-                    &nbsp;booktitle = {European Conference on Computer Vision (ECCV)},<br>
-                    &nbsp;year = {2018}<br>
-                    }
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-		<div class="project" id="ismar2017">
-      <div class="row vertical-align">
-        <div class="col-sm-4">
-          <div class="paper-teaser">
-            <img alt="teaser figure" class="thumbnail" src="images/projects/benchmark.jpg">
-          </div>
-        </div>
-        <div class="col-sm-8">
-          <h4>A Benchmark Dataset for 6DoF Object Pose Tracking</h4>
-          <p class="authors">
-                        <a style="color:black; text-decoration: none;" target="_blank" href="http://media.ee.ntu.edu.tw/personal/pcwu/">Po-Chen Wu,</a>
-                        <a style="color:black; text-decoration: none;">Yueh-Ying Lee*</a>,
-                        <a style="color:black; text-decoration: none;">Hung-Yu Tseng*</a>,
-                        <u>Hsuan-I Ho*</u>,
-						<a style="color:black; text-decoration: none;" target="_blank" href="http://faculty.ucmerced.edu/mhyang/">Ming-Hsuan Yang,</a>
-						<a style="color:black; text-decoration: none;" target="_blank" href="http://www.ee.ntu.edu.tw/profile?id=101">Shao-Yi Chien</a>                        
-                    </p>
-                    <p style="color:#969696;">(* indicates equal contribution.)</p>
-          <p class="conference">
-            [<a style="color:blue;" href="http://media.ee.ntu.edu.tw/personal/pcwu/research/ismar2017_opt/ismar2017_opt.pdf" target="_blank">ISMAR 2017</a>
-            (<a style="color:#969696;" href="javascript:showhide('ismar2017_bib')">BibTeX</a>)]
-            [<a style="color:blue;" href="http://media.ee.ntu.edu.tw/research/OPT/" target="_blank">Project Page</a>]
-          </p>
-          <div id="ismar2017_bib" style="display:none;">
-            <p>
-                @inproceeding{OPT2017,<br>
-                &nbsp;author    = {Wu, Po-Chen and Lee, Yueh-Ying and Tseng, Hung-Yu and Ho, Hsuan-I and Yang, Ming-Hsuan and Chien, Shao-Yi},<br>
-                &nbsp;title     = {A Benchmark Dataset for 6DoF Object Pose Tracking},<br>
-                &nbsp;booktitle = {IEEE International Symposium on Mixed and Augmented Reality (ISMAR Adjunct)},<br>
-                &nbsp;year      = {2017}<br>
-                }
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <br><br><br><br><br>
-    <div style="text-align: center;">
-        <span style="color:#D2691E; font-family:'Open Sans';">
-            <h1><b>Selected Works</b></h1>
-        </span>
-    </div>
-
-    <div style="text-align: center;">
-      <span style="color:#A2691E; font-family:'Annie Use Your Telescope'; font-style: italic;">
-              <h3><b>Course Projects</b></h3>
-      </span>
-  </div>
-  <!--
-  <div class="project" id="FIFA">
-    <div class="row vertical-align">
-      <div class="col-sm-4">
-        <div class="paper-teaser">
-          <img alt="teaser figure" class="thumbnail" src="images/projects/fifa.jpg">
-        </div>
-      </div>
-      <div class="col-sm-8">
-        <h4>FIFA Superresolution Project</h4>
-        <p class="authors">
-          <u>Hsuan-I Ho</u>,
-          <a style="color:black; text-decoration: none;">Jie Song</a>
-        </p>
-
-        <h5>Research Engineer at AIT Lab</h5>
-        <p class="conference">
-          [<a style="color:blue;" href=https://drive.google.com/file/d/1tZsTbDKzP8ao8EMsxs0cmBiYHPv2PXrk/view?usp=sharing" target="_blank">Project Report</a>]
-        </p>
-      </div>
-    </div>
-  </div>
-  -->
-  <div class="project" id="Thesis">
-    <div class="row vertical-align">
-      <div class="col-sm-4">
-        <div class="paper-teaser">
-          <img alt="teaser figure" class="thumbnail" src="images/projects/thesis2.gif">
-        </div>
-      </div>
-      <div class="col-sm-8">
-        <h4>Motion Guided Human Video Synthesis</h4>
-        <p class="authors">
-          <u>Hsuan-I Ho</u>,
-          <a style="color:black; text-decoration: none;">Xu Chen, </a>
-          <a style="color:black; text-decoration: none;">Jie Song, </a>
-          <a style="color:black; text-decoration: none;">Otmar Hilliges</a>
-        </p>
-
-        <h5>Master's thesis</h5>
-        <p class="conference">
-          [<a style="color:blue;" href="https://www.research-collection.ethz.ch/handle/20.500.11850/483970" target="_blank">Master Thesis</a>
-          (<a style="color:#969696;" href="javascript:showhide('Thesis_bib')">BibTeX</a>)]
-        </p>
-        <div id="Thesis_bib" style="display:none;">
-          <p>
-            @MASTERSTHESIS{20.500.11850/483970,<br>
-              copyright = {In Copyright - Non-Commercial Use Permitted},<br>
-              year = {2021},<br>
-              author = {Ho, Hsuan-I},<br>
-              title = {Motion Guided Human Video Synthesis},<br>
-              school = {ETH Zurich}
+        const experiences = [
+            {
+                logo: 'images/logos/google.png',
+                title: 'Student Researcher',
+                institution: 'Google, Zürich',
+                period: 'April 2025 - July 2025'
+            },
+            {
+                logo: 'images/logos/meta.jpg',
+                title: 'Research Scientist Intern',
+                institution: 'Reality Labs, Meta, Redmond',
+                period: 'April 2024 - Feb 2025'
+            },
+            {
+                logo: 'images/logos/naver.png',
+                title: 'Research Intern',
+                institution: 'Clova AI Research, NAVER Corp.',
+                period: 'Sep 2019 - Dec 2019'
+            },
+            {
+                logo: 'images/logos/SINICA.png',
+                title: 'Research Assistant',
+                institution: 'Vision and Learning Lab, NTU / Multimedia and Machine Learning Lab, Academia Sinica',
+                advisor: 'Prof. Yu-Chiang Frank Wang',
+                period: 'Mar 2017 - June 2018'
             }
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--
-  <div class="project" id="MOMINet">
-    <div class="row vertical-align">
-      <div class="col-sm-4">
-        <div class="paper-teaser">
-          <img alt="teaser figure" class="thumbnail" src="images/projects/momi_1.jpg">
-        </div>
-      </div>
-      <div class="col-sm-8">
-        <h4>Learning Pose-aware Human Representations for Conditional Person Image Translation</h4>
-        <p class="authors">
-          <u>Hsuan-I Ho</u>,
-          <a style="color:black; text-decoration: none;">Chi-Ching Hsu, </a>
-          <a style="color:black; text-decoration: none;">Juan-Ting Lin</a>
-        </p>
+        ];
+        
+        const education = [
+            {
+                logo: 'images/logos/ethz.png',
+                degree: 'PhD Student, Department of Computer Science, AIT Lab',
+                institution: 'ETH Zürich',
+                advisor: 'Prof. Dr. Otmar Hilliges, Prof. Dr. Marc Pollefeys',
+                period: 'May 2022 - Present'
+            },
+            {
+                logo: 'images/logos/ethz.png',
+                degree: 'Master of Science, Department of Computer Science',
+                institution: 'ETH Zürich',
+                period: 'Sep 2018 - June 2021'
+            },
+            {
+                logo: 'images/logos/NTU.png',
+                degree: 'Bachelor of Science, Department of Electrical Engineering',
+                institution: 'National Taiwan University',
+                period: 'Sep 2012 - June 2016'
+            }
+        ];
 
-        <h5>Deep Learning course project at ETH Zürich</h5>
-        <p class="conference">
-          [<a style="color:blue;" href="papers/MOMINet.pdf" target="_blank">Project Report</a>]
-        </p>
-      </div>
-    </div>
-  </div>
+        const selectedWorks = [
+            {
+                title: 'Motion Guided Human Video Synthesis',
+                authors: '<u>Hsuan-I Ho</u>, Xu Chen, Jie Song, Otmar Hilliges',
+                type: "Master's Thesis",
+                image: 'images/projects/thesis2.gif',
+                links: {
+                    'Thesis': 'https://www.research-collection.ethz.ch/handle/20.500.11850/483970',
+                },
+                bibtex: `@MASTERSTHESIS{20.500.11850/483970,
+    copyright = {In Copyright - Non-Commercial Use Permitted},
+    year = {2021},
+    author = {Ho, Hsuan-I},
+    title = {Motion Guided Human Video Synthesis},
+    school = {ETH Zurich}
+}`
+            },
+            {
+                title: 'Video Super-Resolution for Football Footages',
+                authors: '<u>Hsuan-I Ho</u>',
+                type: "Semester Project",
+                image: 'images/projects/fifa.gif',
+                links: {
+                    'Report': 'papers/FIFA_report.pdf',
+                }
+            },
+            {
+                title: 'Supe®oad: Road Segmentation through Multi-objective Ensemble and Geometric-aware Post-processing',
+                authors: 'Davin Choo, <u>Hsuan-I Ho</u>, Juan-Ting Lin, Vaclav Rozhon',
+                type: 'Computational Intelligence Lab project at ETH Zürich',
+                image: 'images/projects/SuperRoad.jpg',
+                links: {
+                    'Report': 'papers/SuperRoad.pdf',
+                    'Project Page': 'https://github.com/azuxmioy/SuperRoad'
+                }
+            }
+        ];
 
-		<div class="project" id="SMnet">
-      <div class="row vertical-align">
-        <div class="col-sm-4">
-          <div class="paper-teaser">
-            <img alt="teaser figure" class="thumbnail" src="images/projects/SMNet_thumb.jpg">
-          </div>
-        </div>
-        <div class="col-sm-8">
-          <h4>Spatiotemporal Multimodal Network for Dynamic Gesture Recognition</h4>
-          <p class="authors">
-            <u>Hsuan-I Ho</u>,
-            <a style="color:black; text-decoration: none;">Chi-Ching Hsu</a>        
-          </p>
-          <h5>Machine Perception course project at ETH Zürich</h5>
-          <p class="conference">
-            [<a style="color:blue;" href="papers/SMNet.pdf" target="_blank">Project Report</a>]
-            [<a style="color:blue;" href="https://github.com/azuxmioy/SMnet" target="_blank">Project Page</a>]
-          </p>
-          
-        </div>
-      </div>
-    </div>
-    -->
-		<div class="project" id="SuperRoad">
-      <div class="row vertical-align">
-        <div class="col-sm-4">
-          <div class="paper-teaser">
-            <img alt="teaser figure" class="thumbnail" src="images/projects/SuperRoad.jpg">
-          </div>
-        </div>
-        <div class="col-sm-8">
-          <h4>Supe®oad: Road Segmentation through Multi-objective Ensemble and Geometric-aware Post-processing</h4>
-          <p class="authors">
-              <a style="color:black; text-decoration: none;">Davin Choo</a>,
-              <u>Hsuan-I Ho</u>,    
-              <a style="color:black; text-decoration: none;">Juan-Ting Lin</a>, 
-              <a style="color:black; text-decoration: none;">Vaclav Rozhon</a>        
-          </p>
-          <p style="color:#969696;">(Names are in alphabetical order of first names.)</p>
 
-          <h5>Computational Intelligence Lab course project at ETH Zürich</h5>
+        // --- RENDERING LOGIC ---
 
-          <p class="conference">
-            [<a style="color:blue;" href="papers/SuperRoad.pdf" target="_blank">Project Report</a>]
-            [<a style="color:blue;" href="https://github.com/azuxmioy/SuperRoad" target="_blank">Project Page</a>]
-          </p>
-          
-        </div>
-      </div>
-    </div>
-
-		<div class="project" id="Analyze">
-        <div class="row vertical-align">
-          <div class="col-sm-4">
-            <div class="paper-teaser">
-              <img alt="teaser figure" class="thumbnail" src="images/projects/analysis.jpg">
-            </div>
-          </div>
-          <div class="col-sm-8">
-            <h4>Neural Network Adversarial Attack Analysis</h4>
-            <p class="authors">
-                <u>Hsuan-I Ho</u>,
-                <a style="color:black; text-decoration: none;">Chi-Ching Hsu</a>  
-            </p>  
-  
-            <h5>Reliable and Interpretable Artificial Intelligence course project at ETH Zürich</h5>
-
-            <p class="conference">
-              [<a style="color:blue;" href="papers/analysis.pdf" target="_blank">Project Report</a>]
-              [<a style="color:blue;" href="papers/analyzer.py" target="_blank">Code</a>]
-
-            </p>
+        document.addEventListener('DOMContentLoaded', function() {
             
-          </div>
-        </div>
-      </div>
+            // Reusable function to create media element (image or video)
+            function createMediaElement(item) {
+                const isVideo = item.image.endsWith('.mp4');
+                const mediaElement = isVideo 
+                    ? document.createElement('video') 
+                    : document.createElement('img');
 
-    
+                mediaElement.src = item.image;
+                mediaElement.alt = `Teaser for ${item.title}`;
+                mediaElement.className = 'rounded-lg w-full h-48 object-contain shadow-md';
+                
+                if (isVideo) {
+                    mediaElement.autoplay = true;
+                    mediaElement.loop = true;
+                    mediaElement.muted = true;
+                    mediaElement.playsInline = true;
+                }
 
-  <!-- ================================================== -->
-  <!--END page3-->
-  <!-- ================================================== -->  
+                mediaElement.onerror = () => mediaElement.style.display = 'none';
+                
+                return mediaElement.outerHTML;
+            }
+            
+            // Render Publications
+            const pubList = document.getElementById('publications-list');
+            publications.forEach(p => {
+                const linksHTML = Object.entries(p.links).map(([name, url]) => 
+                    `<a href="${url}" target="_blank" class="text-sky-600 hover:text-sky-800 hover:underline">${name}</a>`
+                ).join(' | ');
 
-</div> <!--END page-wrap-->
+                const bibtexToggle = p.bibtex ? `<a href="#" class="bibtex-toggle text-slate-500 hover:text-slate-800 hover:underline">BibTeX</a>` : '';
+                const mediaHTML = createMediaElement(p);
 
-<div id="page_end">
-	<div style="text-align: center;">
-	<span style="color:#07097b; font-family:'Annie Use Your Telescope';">
-		<p><b><h5>
-            <br>
-            Copyright © 2017 Husan-I Ho<br>
-			Special Thanks : Walon Chiu provides his template<br>
-			(Last Modified: 1<sup>st</sup>.5.2022)
-		</h5></b></p>
-	</span>
-	</div>
-</div>
-<!-- ================================================== -->
-<!--END footer-->
-<!-- ================================================== -->
+                pubList.innerHTML += `
+                    <div class="entry-card flex flex-col md:flex-row gap-6 items-start">
+                        <div class="w-full md:w-1/3 flex-shrink-0">
+                            ${mediaHTML}
+                        </div>
+                        <div class="flex-grow min-w-0">
+                            <h3 class="text-xl font-bold text-slate-900">${p.title}</h3>
+                            <p class="text-md mt-1 text-slate-600">${p.authors}</p>
+                            <p class="text-md font-semibold mt-2 text-slate-800">${p.conference}</p>
+                            <div class="mt-3 text-md space-x-2">
+                                ${linksHTML}
+                                ${p.bibtex ? `| ${bibtexToggle}` : ''}
+                            </div>
+                            ${p.bibtex ? `<pre class="bibtex-content hidden bg-slate-100 text-slate-700 text-sm p-3 mt-3 rounded-md overflow-x-auto"><code>${p.bibtex}</code></pre>` : ''}
+                        </div>
+                    </div>
+                `;
+            });
 
+            // Render Experience & Education (reusable function)
+            function renderTimeline(data, elementId) {
+                const list = document.getElementById(elementId);
+                data.forEach(item => {
+                    list.innerHTML += `
+                        <div class="entry-card flex items-center gap-6">
+                            <div class="w-20 h-20 flex-shrink-0 bg-white rounded-full flex items-center justify-center p-2 shadow-inner">
+                                <img src="${item.logo}" alt="${item.institution} logo" class="max-w-full max-h-full object-contain" onerror="this.style.display='none'">
+                            </div>
+                            <div class="flex-grow">
+                                <h3 class="text-xl font-bold text-slate-900">${item.title || item.degree}</h3>
+                                <p class="text-md mt-1 font-semibold">${item.institution}</p>
+                                ${item.advisor ? `<p class="text-sm text-slate-500 mt-1">Advisor: ${item.advisor}</p>` : ''}
+                                <p class="text-sm text-slate-500 mt-1">${item.period}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            
+            renderTimeline(experiences, 'experience-list');
+            renderTimeline(education, 'education-list');
 
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
-<script type='text/javascript' src="js/youtube.js"></script>
-<script type='text/javascript' src="js/loadimage.js"></script>
+            // Render Selected Works (Similar to publications)
+            const worksList = document.getElementById('works-list');
+            selectedWorks.forEach(w => {
+                const linksHTML = Object.entries(w.links).map(([name, url]) => 
+                    `<a href="${url}" target="_blank" class="text-sky-600 hover:text-sky-800 hover:underline">${name}</a>`
+                ).join(' | ');
+                const bibtexToggle = w.bibtex ? `<a href="#" class="bibtex-toggle text-slate-500 hover:text-slate-800 hover:underline">BibTeX</a>` : '';
+                const mediaHTML = createMediaElement(w);
 
+                worksList.innerHTML += `
+                    <div class="entry-card flex flex-col md:flex-row gap-6 items-start">
+                        <div class="w-full md:w-1/3 flex-shrink-0">
+                            ${mediaHTML}
+                        </div>
+                        <div class="flex-grow min-w-0">
+                            <h3 class="text-xl font-bold text-slate-900">${w.title}</h3>
+                            <p class="text-md mt-1 text-slate-600">${w.authors}</p>
+                            <p class="text-md font-semibold mt-2 text-slate-800">${w.type}</p>
+                            <div class="mt-3 text-md space-x-2">
+                                ${linksHTML}
+                                ${w.bibtex ? `| ${bibtexToggle}` : ''}
+                            </div>
+                             ${w.bibtex ? `<pre class="bibtex-content hidden bg-slate-100 text-slate-700 text-sm p-3 mt-3 rounded-md overflow-x-auto"><code>${w.bibtex}</code></pre>` : ''}
+                        </div>
+                    </div>
+                `;
+            });
 
+            // Add event listeners for BibTeX toggles
+            document.querySelectorAll('.bibtex-toggle').forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const content = this.parentElement.nextElementSibling;
+                    if (content && content.classList.contains('bibtex-content')) {
+                        content.classList.toggle('hidden');
+                    }
+                });
+            });
+
+            // Set copyright year
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 </html>
