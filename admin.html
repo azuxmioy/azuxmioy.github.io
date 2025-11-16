@@ -7,10 +7,8 @@
     <!-- 1. Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- 2. Load Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore-compat.js"></script>
+    <!-- 2. Firebase SDKs (v8) REMOVED -->
+    <!-- We will now load them using import in the module script -->
 
     <!-- 3. Set up the Inter font family -->
     <style>
@@ -56,11 +54,12 @@
         
         <!-- Column 1: Add Attendee -->
         <div class="lg:col-span-1 p-8 bg-white rounded-2xl shadow-xl">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Add/Update Attendee</h2>
+            <!-- UPDATED: Added id="form-title" -->
+            <h2 id="form-title" class="text-2xl font-bold text-gray-800 mb-6">Add/Update Attendee</h2>
             <form id="add-attendee-form" class="space-y-4">
                 <div>
                     <label for="attendee-name" class="block text-sm font-medium text-gray-700">Attendee Name</label>
-                    <input type="text" id="attendee-name" placeholder="John Doe" required class="w-full p-3 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="text" id="attendee-name" placeholder="John Doe" required class="w-full p-3 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:text-gray-500">
                 </div>
                 <div>
                     <label for="attendee-message" class="block text-sm font-medium text-gray-700">Thank You Message</label>
@@ -70,9 +69,15 @@
                     <label for="attendee-image-url" class="block text-sm font-medium text-gray-700">Image URL (Optional)</label>
                     <input type="url" id="attendee-image-url" placeholder="https://..." class="w-full p-3 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
-                <button type="submit" class="w-full bg-green-600 text-white p-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
-                    Add / Update
-                </button>
+                <!-- UPDATED: Added button wrapper and Cancel button -->
+                <div class="flex space-x-2">
+                    <button type="submit" class="w-full bg-green-600 text-white p-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                        Add / Update
+                    </button>
+                    <button type="button" id="cancel-edit-button" class="hidden w-1/3 bg-gray-500 text-white p-3 rounded-lg font-semibold hover:bg-gray-600 transition-colors">
+                        Cancel
+                    </button>
+                </div>
                 <p id="add-attendee-success" class="text-green-600 text-sm mt-2"></p>
             </form>
         </div>
@@ -81,9 +86,16 @@
         <div class="lg:col-span-2 p-8 bg-white rounded-2xl shadow-xl space-y-6">
             <div>
                 <h2 class="text-2xl font-bold text-gray-800 mb-4">Feedback Stats</h2>
-                <button id="refresh-stats-button" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors mb-4">
-                    Refresh Stats
-                </button>
+                <!-- UPDATED: Wrapped buttons in a flex container -->
+                <div class="flex space-x-2 mb-4">
+                    <button id="refresh-stats-button" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                        Refresh Stats
+                    </button>
+                    <!-- NEW: Reset Stats Button -->
+                    <button id="reset-stats-button" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">
+                        Reset Stats
+                    </button>
+                </div>
                 <div class="flex space-x-8">
                     <div class="text-center">
                         <span class="text-6xl">👍</span>
@@ -110,21 +122,64 @@
 
     </div>
 
-    <script>
+    <!-- NEW: Delete Confirmation Modal -->
+    <div id="delete-modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-xl p-8 max-w-sm w-full">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Confirm Deletion</h3>
+            <p id="delete-modal-message" class="text-gray-600 mb-6">Are you sure you want to delete this attendee?</p>
+            <div class="flex justify-end space-x-3">
+                <button id="delete-modal-cancel" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors">
+                    Cancel
+                </button>
+                <button id="delete-modal-confirm" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- NEW: Use type="module" to allow imports -->
+    <script type="module">
+        // Import all the functions we need from the v12 SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+        import { 
+            getAuth, 
+            signInWithEmailAndPassword, 
+            signOut, 
+            onAuthStateChanged 
+        } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+        import { 
+            getFirestore, 
+            collection, 
+            doc, 
+            setDoc,
+            getDoc, // NEW: Import getDoc
+            deleteDoc, // NEW: Import deleteDoc
+            getDocs, 
+            query, 
+            where, 
+            onSnapshot 
+        } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+
         // --- Firebase Configuration ---
-        // PASTE YOUR firebaseConfig OBJECT FROM YOUR FIREBASE PROJECT HERE
-        // (MUST BE THE SAME as in index.html)
         const firebaseConfig = {
-  apiKey: "AIzaSyDNPF7SZ6L2vJ9L9RlYLHljy13bDPf-U00",
-  authDomain: "hohs-thesis-thankyou.firebaseapp.com",
-  projectId: "hohs-thesis-thankyou",
-  storageBucket: "hohs-thesis-thankyou.firebasestorage.app",
-  messagingSenderId: "470814353762",
-  appId: "1:470814353762:web:c1ef4df38e33fb601ae43b"
+            apiKey: "AIzaSyDNPF7SZ6L2vJ9L9RlYLHljy13bDPf-U00",
+            authDomain: "hohs-thesis-thankyou.firebaseapp.com",
+            projectId: "hohs-thesis-thankyou",
+            storageBucket: "hohs-thesis-thankyou.firebasestorage.app",
+            messagingSenderId: "470814353762",
+            appId: "1:470814353762:web:c1ef4df38e33fb601ae43b"
         };
 
+        // --- Modular Firebase Initialization ---
         let db;
         let auth;
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        auth = getAuth(app);
+
 
         // DOM Elements
         const loginSection = document.getElementById('login-section');
@@ -139,15 +194,26 @@
         const thumbsDownCount = document.getElementById('thumbs-down-count');
         const attendeeList = document.getElementById('attendee-list');
 
+        // NEW: Form and Modal elements
+        const formTitle = document.getElementById('form-title');
+        const attendeeNameInput = document.getElementById('attendee-name');
+        const attendeeMessageInput = document.getElementById('attendee-message');
+        const attendeeImageInput = document.getElementById('attendee-image-url');
+        const cancelEditButton = document.getElementById('cancel-edit-button');
+        
+        const deleteModal = document.getElementById('delete-modal');
+        const deleteModalMessage = document.getElementById('delete-modal-message');
+        const deleteModalCancel = document.getElementById('delete-modal-cancel');
+        const deleteModalConfirm = document.getElementById('delete-modal-confirm');
+
+        let attendeeToDelete = null; // State for delete modal
+
         document.addEventListener('DOMContentLoaded', () => {
             try {
-                firebase.initializeApp(firebaseConfig);
-                db = firebase.firestore();
-                auth = firebase.auth();
                 console.log("Admin Firebase Initialized");
 
-                // Listen for auth state changes
-                auth.onAuthStateChanged(user => {
+                // --- REFACTORED: Listen for auth state changes ---
+                onAuthStateChanged(auth, user => {
                     if (user) {
                         // User is logged in
                         loginSection.classList.add('hidden');
@@ -171,13 +237,27 @@
                 addAttendeeForm.addEventListener('submit', handleAddAttendee);
                 refreshStatsButton.addEventListener('click', fetchStats);
 
+                // NEW: Listeners for edit/delete
+                cancelEditButton.addEventListener('click', handleCancelEdit);
+                deleteModalCancel.addEventListener('click', hideDeleteModal);
+                deleteModalConfirm.addEventListener('click', confirmDelete); // This will be dynamic
+
+                // NEW: Listener for Reset Stats
+                const resetStatsButton = document.getElementById('reset-stats-button');
+                resetStatsButton.addEventListener('click', handleResetStats);
+
+
             } catch (e) {
-                console.error("Firebase initialization failed:", e);
-                loginError.innerText = "Error loading admin panel. Check console.";
+                console.error("Firebase initialization failed:", e.message); // Log the specific message
+                if (e.message.includes("config") || e.message.includes("apiKey")) {
+                    loginError.innerText = "Error: Firebase config is invalid.";
+                } else {
+                    loginError.innerText = "Error loading admin panel. Check console for details.";
+                }
             }
         });
 
-        // --- Authentication ---
+        // --- REFACTORED: Authentication ---
         async function handleLogin(e) {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
@@ -185,44 +265,54 @@
             loginError.innerText = "";
 
             try {
-                await auth.signInWithEmailAndPassword(email, pass);
+                // v12: Pass auth as first argument
+                await signInWithEmailAndPassword(auth, email, pass);
                 // Auth listener will handle the UI change
             } catch (e) {
-                console.error("Login failed:", e);
-                loginError.innerText = e.message;
+                console.error("Login failed:", e.code, e.message); 
+                if (e.code === 'auth/invalid-credential' || e.code === 'auth/wrong-password' || e.code === 'auth/user-not-found') {
+                    loginError.innerText = "Error: Invalid email or password.";
+                } else {
+                    loginError.innerText = e.message;
+                }
             }
         }
 
         async function handleSignOut() {
             try {
-                await auth.signOut();
+                // v12: Pass auth as first argument
+                await signOut(auth);
                 // Auth listener will handle the UI change
             } catch (e) {
                 console.error("Sign out failed:", e);
             }
         }
 
-        // --- Add/Update Attendee ---
+        // --- REFACTORED: Add/Update Attendee ---
         async function handleAddAttendee(e) {
             e.preventDefault();
-            const name = document.getElementById('attendee-name').value;
-            const msg = document.getElementById('attendee-message').value;
-            const img = document.getElementById('attendee-image-url').value;
+            const name = attendeeNameInput.value; // Use the element directly
+            const msg = attendeeMessageInput.value;
+            const img = attendeeImageInput.value;
 
             if (!name || !msg) return;
 
-            addAttendeeSuccess.innerText = "Adding...";
+            addAttendeeSuccess.innerText = "Saving...";
 
             try {
-                // Use the name as the document ID
-                const attendeeRef = db.collection("attendees").doc(name);
-                await attendeeRef.set({
+                // v12: Use doc() and setDoc()
+                // doc(db, collectionName, documentId)
+                const attendeeRef = doc(db, "attendees", name);
+                await setDoc(attendeeRef, {
                     msg: msg,
                     img: img
                 });
 
-                addAttendeeSuccess.innerText = `Successfully added/updated ${name}!`;
-                addAttendeeForm.reset();
+                addAttendeeSuccess.innerText = `Successfully saved ${name}!`;
+                
+                // NEW: Reset form state
+                handleCancelEdit(); 
+                
                 setTimeout(() => { addAttendeeSuccess.innerText = ""; }, 3000);
             } catch (e) {
                 console.error("Error adding attendee:", e);
@@ -230,39 +320,168 @@
             }
         }
 
-        // --- Feedback Stats ---
+        // --- NEW: Edit/Cancel Edit Functions ---
+        // Needs to be on window to be called from innerHTML
+        window.handleEdit = async (name) => {
+            try {
+                const docRef = doc(db, "attendees", name);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    attendeeNameInput.value = name;
+                    attendeeMessageInput.value = data.msg;
+                    attendeeImageInput.value = data.img || "";
+
+                    // Update UI for editing
+                    formTitle.innerText = "Editing: " + name;
+                    attendeeNameInput.disabled = true; // Don't allow changing the name (ID)
+                    cancelEditButton.classList.remove('hidden');
+
+                    // Scroll to form
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    console.error("No document found to edit!");
+                }
+            } catch (e) {
+                console.error("Error getting doc for edit:", e);
+            }
+        }
+
+        function handleCancelEdit() {
+            addAttendeeForm.reset();
+            formTitle.innerText = "Add/Update Attendee";
+            attendeeNameInput.disabled = false;
+            cancelEditButton.classList.add('hidden');
+        }
+
+        // --- NEW: Delete Functions ---
+        // Needs to be on window to be called from innerHTML
+        window.handleDelete = (name) => {
+            attendeeToDelete = name;
+            deleteModalMessage.innerText = `Are you sure you want to delete "${name}"? This cannot be undone.`
+            deleteModalConfirm.onclick = confirmDelete; // Set the confirm function
+            deleteModal.classList.remove('hidden');
+        }
+
+        function hideDeleteModal() {
+            attendeeToDelete = null;
+            deleteModalConfirm.onclick = null; // Clear the confirm function
+            deleteModal.classList.add('hidden');
+        }
+
+        async function confirmDelete() {
+            if (!attendeeToDelete) return;
+
+            try {
+                const docRef = doc(db, "attendees", attendeeToDelete);
+                await deleteDoc(docRef);
+                console.log("Deleted:", attendeeToDelete);
+                hideDeleteModal();
+                // onSnapshot will handle the UI update
+            } catch (e) {
+                console.error("Error deleting document:", e);
+                hideDeleteModal();
+            }
+        }
+
+        // --- NEW: Reset Stats Functions ---
+        function handleResetStats() {
+            // Show the modal with a different message and confirm function
+            deleteModalMessage.innerText = "Are you sure you want to delete ALL feedback data? This will reset counts to 0 and cannot be undone."
+            deleteModalConfirm.onclick = confirmResetStats; // Set the *new* confirm function
+            deleteModal.classList.remove('hidden');
+        }
+
+        async function confirmResetStats() {
+            console.log("Resetting all feedback stats...");
+            try {
+                // Get all documents from the feedback collection
+                const feedbackCollection = collection(db, "feedback");
+                const snapshot = await getDocs(feedbackCollection);
+                
+                if (snapshot.empty) {
+                    console.log("No feedback to delete.");
+                    hideDeleteModal();
+                    return;
+                }
+                
+                // Create an array of delete promises
+                const deletePromises = snapshot.docs.map(doc => deleteDoc(doc.ref));
+                
+                // Wait for all deletes to finish
+                await Promise.all(deletePromises);
+                
+                console.log("All feedback deleted successfully.");
+                
+            } catch (e) {
+                console.error("Error resetting stats:", e);
+            }
+            
+            // Hide the modal and refresh the counts (which will now be 0)
+            hideDeleteModal();
+            fetchStats();
+        }
+
+
+        // --- REFACTORED: Feedback Stats ---
         async function fetchStats() {
             thumbsUpCount.innerText = "...";
             thumbsDownCount.innerText = "...";
             try {
-                // In v8, we get the collections and use .size
-                const upVotesSnapshot = await db.collection("feedback").where("vote", "==", "up").get();
-                const downVotesSnapshot = await db.collection("feedback").where("vote", "==", "down").get();
+                // v12: Use query(), where(), and getDocs()
+                const upVotesQuery = query(collection(db, "feedback"), where("vote", "==", "up"));
+                const downVotesQuery = query(collection(db, "feedback"), where("vote", "==", "down"));
+                
+                const upVotesSnapshot = await getDocs(upVotesQuery);
+                const downVotesSnapshot = await getDocs(downVotesQuery);
 
                 thumbsUpCount.innerText = upVotesSnapshot.size;
                 thumbsDownCount.innerText = downVotesSnapshot.size;
             } catch (e) {
-                console.error("Error fetching stats:", e);
-                thumbsUpCount.innerText = "Err";
-                thumbsDownCount.innerText = "Err";
+                console.error("Error fetching stats:", e.code, e.message); 
+                if (e.code === 'permission-denied') {
+                    thumbsUpCount.innerText = "N/A";
+                    thumbsDownCount.innerText = "N/A";
+                    attendeeList.innerHTML = "<p class='text-red-500'>Error: Permission denied. Did you update your Firestore rules?</p>";
+                } else {
+                    thumbsUpCount.innerText = "Err";
+                    thumbsDownCount.innerText = "Err";
+                }
             }
         }
 
-        // --- Attendee List ---
+        // --- REFACTORED: Attendee List ---
         function loadAttendeeList() {
-            // Use onSnapshot for a real-time list
-            db.collection("attendees").onSnapshot(snapshot => {
+            // v12: Use onSnapshot() and collection()
+            const attendeesCollection = collection(db, "attendees");
+            onSnapshot(attendeesCollection, snapshot => {
                 if (snapshot.empty) {
                     attendeeList.innerHTML = "<p class='text-gray-500'>No attendees added yet.</p>";
                     return;
                 }
 
                 let html = "";
+                // UPDATED: Added Edit/Delete buttons
                 snapshot.forEach(doc => {
                     html += `
-                        <div class="p-2 border-b border-gray-100">
-                            <p class="font-semibold text-gray-800">${doc.id}</p>
-                            <p class="text-sm text-gray-600 truncate">${doc.data().msg}</p>
+                        <div class="p-3 border-b border-gray-100 flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold text-gray-800">${doc.id}</p>
+                                <p class="text-sm text-gray-600 truncate" style="max-width: 300px;">${doc.data().msg}</p>
+                            </div>
+                            <div class="flex space-x-3 flex-shrink-0">
+                                <button 
+                                    onclick="window.handleEdit('${doc.id}')"
+                                    class="text-blue-600 hover:underline text-sm font-medium">
+                                    Edit
+                                </button>
+                                <button 
+                                    onclick="window.handleDelete('${doc.id}')"
+                                    class="text-red-600 hover:underline text-sm font-medium">
+                                    Delete
+                                </button>
+                            </div>
                         </div>
                     `;
                 });

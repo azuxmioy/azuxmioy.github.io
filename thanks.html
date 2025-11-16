@@ -7,10 +7,8 @@
     <!-- 1. Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- 2. Load Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore-compat.js"></script>
+    <!-- 2. Firebase SDKs (v8) REMOVED -->
+    <!-- We will now load them using import in the module script -->
 
     <!-- 3. Set up the Inter font family -->
     <style>
@@ -43,7 +41,7 @@
         <div class="relative space-y-4">
             <div>
                 <label for="name-input" class="sr-only">Your Name</label>
-                <input type="text" id="name-input" placeholder="Start typing your name..." class="w-full p-4 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-500" autocomplete="off" disabled>
+                <input type="text" id="name-input" placeholder="Loading messages..." class="w-full p-4 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-500" autocomplete="off" disabled>
             
                 <!-- Name Matches Dropdown -->
                 <div id="name-matches" class="hidden absolute left-0 right-0 z-10 bg-white border border-gray-300 rounded-b-lg shadow-lg overflow-hidden max-h-60 overflow-y-auto">
@@ -63,19 +61,30 @@
 
     </div>
 
-    <script>
+    <!-- NEW: Use type="module" to allow imports -->
+    <script type="module">
+        // Import all the functions we need from the v12 SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+        import { getFirestore, collection, getDocs, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
         // --- Firebase Configuration ---
-        // PASTE YOUR firebaseConfig OBJECT FROM YOUR FIREBASE PROJECT HERE
         const firebaseConfig = {
-  apiKey: "AIzaSyDNPF7SZ6L2vJ9L9RlYLHljy13bDPf-U00",
-  authDomain: "hohs-thesis-thankyou.firebaseapp.com",
-  projectId: "hohs-thesis-thankyou",
-  storageBucket: "hohs-thesis-thankyou.firebasestorage.app",
-  messagingSenderId: "470814353762",
-  appId: "1:470814353762:web:c1ef4df38e33fb601ae43b"
+            apiKey: "AIzaSyDNPF7SZ6L2vJ9L9RlYLHljy13bDPf-U00",
+            authDomain: "hohs-thesis-thankyou.firebaseapp.com",
+            projectId: "hohs-thesis-thankyou",
+            storageBucket: "hohs-thesis-thankyou.firebasestorage.app",
+            messagingSenderId: "470814353762",
+            appId: "1:470814353762:web:c1ef4df38e33fb601ae43b"
         };
 
+        // --- Modular Firebase Initialization ---
         let db;
+        let auth;
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        auth = getAuth(app);
+        
         // This will hold our data from FIRESTORE
         let messagesData = {};
 
@@ -88,10 +97,8 @@
         // Function to initialize Firebase and sign in
         async function initializeFirebase() {
             try {
-                firebase.initializeApp(firebaseConfig);
-                db = firebase.firestore(); // Get the database instance
-                await firebase.auth().signInAnonymously(); // Sign in the user anonymously
-                console.log("Firebase initialized and user signed in.");
+                // await signInAnonymously(auth); // <-- REMOVED THIS LINE
+                console.log("Firebase initialized.");
 
                 // NEW: Load messages from Firestore
                 await loadMessagesFromFirestore();
@@ -107,13 +114,14 @@
             }
         }
 
-        // --- NEW: Function to load messages from Firestore ---
+        // --- REFACTORED: Load messages from Firestore ---
         async function loadMessagesFromFirestore() {
             try {
-                // We get all documents from the 'attendees' collection
-                const snapshot = await db.collection("attendees").get();
+                // v12: Use collection() and getDocs()
+                const attendeesCollection = collection(db, "attendees");
+                const snapshot = await getDocs(attendeesCollection);
+                
                 snapshot.forEach(doc => {
-                    // We build the same messagesData object, but from the DB
                     // The document ID is the name
                     messagesData[doc.id] = doc.data(); 
                 });
@@ -125,19 +133,21 @@
             }
         }
 
-        // --- UPDATED: Function to handle feedback clicks ---
-        async function handleFeedback(clickedButton, voteType) {
+        // --- REFACTORED: Function to handle feedback clicks ---
+        // We need to make this function global so the inline onclick can find it
+        window.handleFeedback = async function(clickedButton, voteType) {
             const name = document.getElementById('name-input').value;
             console.log(`Feedback for ${name}: ${voteType}`);
 
             // Send data to Firestore
             if (db) {
                 try {
-                    const feedbackCollection = db.collection("feedback");
-                    await feedbackCollection.add({
+                    // v12: Use collection() and addDoc()
+                    const feedbackCollection = collection(db, "feedback");
+                    await addDoc(feedbackCollection, {
                         name: name,
                         vote: voteType,
-                        timestamp: firebase.firestore.FieldValue.serverTimestamp() 
+                        timestamp: serverTimestamp() // v12: Import serverTimestamp()
                     });
                     console.log("Feedback saved to Firestore.");
                 } catch (e) {
@@ -166,8 +176,7 @@
             if (thanksMessage) thanksMessage.classList.remove('hidden');
         }
 
-        // --- Main Application Logic (No changes needed below) ---
-        // This function now works with the data loaded from Firestore
+        // --- Main Application Logic (No changes needed) ---
         function findMatches() {
             const query = input.value.toLowerCase().trim();
             
@@ -195,15 +204,14 @@
                 matchesContainer.classList.add('hidden');
             }
         }
-
-        // Function to select a name from the list
-        function selectName(event, name) {
+        
+        // Make functions globally available for inline event handlers
+        window.selectName = function(event, name) {
             event.preventDefault(); 
             input.value = name;
             matchesContainer.classList.add('hidden');
         }
 
-        // This function now works with the data loaded from Firestore
         function showMessage() {
             const name = input.value.trim();
             matchesContainer.classList.add('hidden'); 
@@ -239,18 +247,19 @@
                 messageToShow = "<p>Thank you for being here to celebrate with me! Your support and presence mean so much.</p>";
             }
 
+            // Note: onclick handlers now call window.handleFeedback
             const feedbackHtml = `
                 <div class="feedback-section mt-6 pt-4 border-t border-gray-200">
                     <p class="feedback-prompt text-sm text-gray-700 mb-2">Did you like this message?</p>
                     <div class="feedback-buttons flex space-x-2">
                         <button 
-                            onclick="handleFeedback(this, 'up')"
+                            onclick="window.handleFeedback(this, 'up')"
                             aria-label="Thumb Up"
                             class="p-2 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors">
                             <span class="text-xl">👍</span>
                         </button>
                         <button 
-                            onclick="handleFeedback(this, 'down')"
+                            onclick="window.handleFeedback(this, 'down')"
                             aria-label="Thumb Down"
                             class="p-2 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors">
                             <span class="text-xl">👎</span>
