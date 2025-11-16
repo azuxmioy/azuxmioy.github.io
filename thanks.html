@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Thank You</title>
+    <!-- 1. Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Load Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore-compat.js"></script>
+
+    <!-- 3. Set up the Inter font family -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
+        #name-matches .match-item:hover, 
+        #name-matches .match-item:focus {
+            background-color: #f3f4f6; /* bg-gray-100 */
+        }
+
+        .feedback-selected {
+            background-color: #dbeafe; /* bg-blue-100 */
+            ring: 2px;
+            ring-color: #93c5fd; /* ring-blue-300 */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+
+    <!-- Main Card -->
+    <div class="bg-white p-8 rounded-2xl shadow-xl max-w-lg w-full text-center">
+        
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">A Special Thank You</h1>
+        <p class="text-gray-600 mb-6">Thank you so much for being here today. Please enter your name to see a personal message.</p>
+
+        <!-- Input Section -->
+        <div class="relative space-y-4">
+            <div>
+                <label for="name-input" class="sr-only">Your Name</label>
+                <input type="text" id="name-input" placeholder="Start typing your name..." class="w-full p-4 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-500" autocomplete="off" disabled>
+            
+                <!-- Name Matches Dropdown -->
+                <div id="name-matches" class="hidden absolute left-0 right-0 z-10 bg-white border border-gray-300 rounded-b-lg shadow-lg overflow-hidden max-h-60 overflow-y-auto">
+                    <!-- Matches will be inserted here by JavaScript -->
+                </div>
+            </div>
+            
+            <button id="reveal-button" class="w-full bg-blue-600 text-white p-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors duration-200 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" disabled>
+                Reveal My Message
+            </button>
+        </div>
+
+        <!-- Message Display Area (Initially Hidden) -->
+        <div id="message-display" class="hidden mt-6 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg text-left">
+            <!-- Content will be inserted here by JavaScript -->
+        </div>
+
+    </div>
+
+    <script>
+        // --- Firebase Configuration ---
+        // PASTE YOUR firebaseConfig OBJECT FROM YOUR FIREBASE PROJECT HERE
+        const firebaseConfig = {
+  apiKey: "AIzaSyDNPF7SZ6L2vJ9L9RlYLHljy13bDPf-U00",
+  authDomain: "hohs-thesis-thankyou.firebaseapp.com",
+  projectId: "hohs-thesis-thankyou",
+  storageBucket: "hohs-thesis-thankyou.firebasestorage.app",
+  messagingSenderId: "470814353762",
+  appId: "1:470814353762:web:c1ef4df38e33fb601ae43b"
+        };
+
+        let db;
+        // This will hold our data from FIRESTORE
+        let messagesData = {};
+
+        // Get DOM elements
+        const button = document.getElementById('reveal-button');
+        const input = document.getElementById('name-input');
+        const displayArea = document.getElementById('message-display');
+        const matchesContainer = document.getElementById('name-matches');
+
+        // Function to initialize Firebase and sign in
+        async function initializeFirebase() {
+            try {
+                firebase.initializeApp(firebaseConfig);
+                db = firebase.firestore(); // Get the database instance
+                await firebase.auth().signInAnonymously(); // Sign in the user anonymously
+                console.log("Firebase initialized and user signed in.");
+
+                // NEW: Load messages from Firestore
+                await loadMessagesFromFirestore();
+
+                // Once loaded, enable the input and button
+                input.disabled = false;
+                button.disabled = false;
+                input.placeholder = "Start typing your name...";
+
+            } catch (e) {
+                console.error("Firebase initialization failed:", e);
+                input.placeholder = "Could not load messages.";
+            }
+        }
+
+        // --- NEW: Function to load messages from Firestore ---
+        async function loadMessagesFromFirestore() {
+            try {
+                // We get all documents from the 'attendees' collection
+                const snapshot = await db.collection("attendees").get();
+                snapshot.forEach(doc => {
+                    // We build the same messagesData object, but from the DB
+                    // The document ID is the name
+                    messagesData[doc.id] = doc.data(); 
+                });
+                console.log("Messages loaded from Firestore.");
+            } catch (e) {
+                console.error("Failed to load messages from Firestore:", e);
+                displayArea.innerHTML = `<p class="font-semibold text-red-600">Could not load messages. Please try refreshing.</p>`;
+                displayArea.classList.remove('hidden');
+            }
+        }
+
+        // --- UPDATED: Function to handle feedback clicks ---
+        async function handleFeedback(clickedButton, voteType) {
+            const name = document.getElementById('name-input').value;
+            console.log(`Feedback for ${name}: ${voteType}`);
+
+            // Send data to Firestore
+            if (db) {
+                try {
+                    const feedbackCollection = db.collection("feedback");
+                    await feedbackCollection.add({
+                        name: name,
+                        vote: voteType,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp() 
+                    });
+                    console.log("Feedback saved to Firestore.");
+                } catch (e) {
+                    console.error("Error saving feedback:", e);
+                }
+            }
+
+            const buttonWrapper = clickedButton.parentElement;
+            const feedbackSection = buttonWrapper.parentElement;
+            const thanksMessage = feedbackSection.querySelector('.feedback-thanks');
+            const promptMessage = feedbackSection.querySelector('.feedback-prompt');
+            const buttons = buttonWrapper.querySelectorAll('button');
+
+            // Disable all buttons and fade them
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                btn.classList.add('opacity-50');
+            });
+
+            // Highlight the selected button
+            clickedButton.classList.remove('opacity-50');
+            clickedButton.classList.add('feedback-selected'); 
+
+            // Show thanks message and hide prompt
+            if (promptMessage) promptMessage.classList.add('hidden');
+            if (thanksMessage) thanksMessage.classList.remove('hidden');
+        }
+
+        // --- Main Application Logic (No changes needed below) ---
+        // This function now works with the data loaded from Firestore
+        function findMatches() {
+            const query = input.value.toLowerCase().trim();
+            
+            if (query.length < 2) {
+                matchesContainer.classList.add('hidden');
+                return;
+            }
+
+            const allNames = Object.keys(messagesData);
+            const matchingNames = allNames.filter(name => 
+                name.toLowerCase().includes(query)
+            );
+
+            if (matchingNames.length > 0) {
+                matchesContainer.innerHTML = matchingNames.map(name => {
+                    return `<div class="match-item p-3 text-left cursor-pointer" 
+                                 onmousedown="selectName(event, '${name}')" 
+                                 tabindex="0" 
+                                 onkeydown="if(event.key==='Enter') selectName(event, '${name}')">
+                                ${name}
+                           </div>`;
+                }).join('');
+                matchesContainer.classList.remove('hidden');
+            } else {
+                matchesContainer.classList.add('hidden');
+            }
+        }
+
+        // Function to select a name from the list
+        function selectName(event, name) {
+            event.preventDefault(); 
+            input.value = name;
+            matchesContainer.classList.add('hidden');
+        }
+
+        // This function now works with the data loaded from Firestore
+        function showMessage() {
+            const name = input.value.trim();
+            matchesContainer.classList.add('hidden'); 
+
+            if (name === "") {
+                displayArea.innerHTML = `<p class="font-semibold">Please enter a name!</p>`;
+                displayArea.classList.remove('hidden');
+                return;
+            }
+
+            const keys = Object.keys(messagesData);
+            const matchingKey = keys.find(key => key.toLowerCase() === name.toLowerCase());
+
+            let messageToShow = "";
+            let dearName = name;
+
+            if (matchingKey) {
+                const data = messagesData[matchingKey];
+                
+                dearName = matchingKey; 
+                const messageText = data.msg || "Thank you for being here!";
+                const imageUrl = data.img || "";
+
+                let imageHtml = "";
+                if (imageUrl) {
+                    imageHtml = `<img src="${imageUrl}" alt="A special photo for ${dearName}" class="w-full h-auto object-cover rounded-lg mb-4" onerror="this.style.display='none'">`;
+                }
+                
+                messageToShow = `${imageHtml}<p>${messageText}</p>`;
+                
+            } else {
+                // Name was not found, show a generic message.
+                messageToShow = "<p>Thank you for being here to celebrate with me! Your support and presence mean so much.</p>";
+            }
+
+            const feedbackHtml = `
+                <div class="feedback-section mt-6 pt-4 border-t border-gray-200">
+                    <p class="feedback-prompt text-sm text-gray-700 mb-2">Did you like this message?</p>
+                    <div class="feedback-buttons flex space-x-2">
+                        <button 
+                            onclick="handleFeedback(this, 'up')"
+                            aria-label="Thumb Up"
+                            class="p-2 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors">
+                            <span class="text-xl">👍</span>
+                        </button>
+                        <button 
+                            onclick="handleFeedback(this, 'down')"
+                            aria-label="Thumb Down"
+                            class="p-2 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors">
+                            <span class="text-xl">👎</span>
+                        </button>
+                    </div>
+                    <p class="feedback-thanks hidden text-sm text-green-700 font-medium mt-2">Thank you for your feedback!</p>
+                </div>
+            `;
+
+
+            // Display the final message
+            displayArea.innerHTML = `
+                <p class="font-semibold text-lg mb-2">Dear ${dearName},</p>
+                ${messageToShow}
+                ${feedbackHtml}
+            `;
+            displayArea.classList.remove('hidden');
+        }
+
+        // Attach all event listeners
+        function attachListeners() {
+            button.addEventListener('click', showMessage);
+
+            input.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    if (!matchesContainer.classList.contains('hidden')) {
+                        event.preventDefault();
+                    } else {
+                        showMessage();
+                    }
+                }
+            });
+
+            input.addEventListener('input', findMatches);
+
+            input.addEventListener('blur', function() {
+                setTimeout(() => {
+                    matchesContainer.classList.add('hidden');
+                }, 150);
+            });
+
+            input.addEventListener('focus', findMatches);
+        }
+
+        // Start the application
+        document.addEventListener('DOMContentLoaded', async () => {
+            // This now initializes Firebase AND loads the messages
+            await initializeFirebase(); 
+            attachListeners();
+        });
+
+    </script>
+</body>
+</html>

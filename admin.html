@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <!-- 1. Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Load Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore-compat.js"></script>
+
+    <!-- 3. Set up the Inter font family -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- Header -->
+    <div class="bg-white shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-800">Thank You Admin</h1>
+            <button id="sign-out-button" class="hidden bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">
+                Sign Out
+            </button>
+        </nav>
+    </div>
+
+    <!-- Login Form (Initially Shown) -->
+    <div id="login-section" class="container mx-auto max-w-md mt-12 p-8 bg-white rounded-2xl shadow-xl">
+        <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Admin Login</h2>
+        <form id="login-form" class="space-y-4">
+            <div>
+                <label for="login-email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="login-email" required class="w-full p-3 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div>
+                <label for="login-password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="login-password" required class="w-full p-3 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                Sign In
+            </button>
+            <p id="login-error" class="text-red-500 text-sm mt-2"></p>
+        </form>
+    </div>
+
+    <!-- Admin Content (Initially Hidden) -->
+    <div id="admin-content" class="hidden container mx-auto mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8 px-6">
+        
+        <!-- Column 1: Add Attendee -->
+        <div class="lg:col-span-1 p-8 bg-white rounded-2xl shadow-xl">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Add/Update Attendee</h2>
+            <form id="add-attendee-form" class="space-y-4">
+                <div>
+                    <label for="attendee-name" class="block text-sm font-medium text-gray-700">Attendee Name</label>
+                    <input type="text" id="attendee-name" placeholder="John Doe" required class="w-full p-3 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="attendee-message" class="block text-sm font-medium text-gray-700">Thank You Message</label>
+                    <textarea id="attendee-message" rows="4" placeholder="Thanks for coming!" required class="w-full p-3 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                </div>
+                <div>
+                    <label for="attendee-image-url" class="block text-sm font-medium text-gray-700">Image URL (Optional)</label>
+                    <input type="url" id="attendee-image-url" placeholder="https://..." class="w-full p-3 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white p-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                    Add / Update
+                </button>
+                <p id="add-attendee-success" class="text-green-600 text-sm mt-2"></p>
+            </form>
+        </div>
+
+        <!-- Column 2: Stats -->
+        <div class="lg:col-span-2 p-8 bg-white rounded-2xl shadow-xl space-y-6">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Feedback Stats</h2>
+                <button id="refresh-stats-button" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors mb-4">
+                    Refresh Stats
+                </button>
+                <div class="flex space-x-8">
+                    <div class="text-center">
+                        <span class="text-6xl">👍</span>
+                        <p id="thumbs-up-count" class="text-4xl font-bold text-gray-800">0</p>
+                        <p class="text-gray-600">Thumbs Up</p>
+                    </div>
+                    <div class="text-center">
+                        <span class="text-6xl">👎</span>
+                        <p id="thumbs-down-count" class="text-4xl font-bold text-gray-800">0</p>
+                        <p class="text-gray-600">Thumbs Down</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Attendees List -->
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Current Attendees</h2>
+                <div id="attendee-list" class="max-h-96 overflow-y-auto border border-gray-200 rounded-lg p-4 space-y-2">
+                    <!-- List will be populated by JS -->
+                    <p class="text-gray-500">Loading attendees...</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Firebase Configuration ---
+        // PASTE YOUR firebaseConfig OBJECT FROM YOUR FIREBASE PROJECT HERE
+        // (MUST BE THE SAME as in index.html)
+        const firebaseConfig = {
+  apiKey: "AIzaSyDNPF7SZ6L2vJ9L9RlYLHljy13bDPf-U00",
+  authDomain: "hohs-thesis-thankyou.firebaseapp.com",
+  projectId: "hohs-thesis-thankyou",
+  storageBucket: "hohs-thesis-thankyou.firebasestorage.app",
+  messagingSenderId: "470814353762",
+  appId: "1:470814353762:web:c1ef4df38e33fb601ae43b"
+        };
+
+        let db;
+        let auth;
+
+        // DOM Elements
+        const loginSection = document.getElementById('login-section');
+        const adminContent = document.getElementById('admin-content');
+        const loginForm = document.getElementById('login-form');
+        const loginError = document.getElementById('login-error');
+        const signOutButton = document.getElementById('sign-out-button');
+        const addAttendeeForm = document.getElementById('add-attendee-form');
+        const addAttendeeSuccess = document.getElementById('add-attendee-success');
+        const refreshStatsButton = document.getElementById('refresh-stats-button');
+        const thumbsUpCount = document.getElementById('thumbs-up-count');
+        const thumbsDownCount = document.getElementById('thumbs-down-count');
+        const attendeeList = document.getElementById('attendee-list');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                firebase.initializeApp(firebaseConfig);
+                db = firebase.firestore();
+                auth = firebase.auth();
+                console.log("Admin Firebase Initialized");
+
+                // Listen for auth state changes
+                auth.onAuthStateChanged(user => {
+                    if (user) {
+                        // User is logged in
+                        loginSection.classList.add('hidden');
+                        adminContent.classList.remove('hidden');
+                        signOutButton.classList.remove('hidden');
+                        
+                        // Load initial data
+                        loadAttendeeList();
+                        fetchStats();
+                    } else {
+                        // User is logged out
+                        loginSection.classList.remove('hidden');
+                        adminContent.classList.add('hidden');
+                        signOutButton.classList.add('hidden');
+                    }
+                });
+
+                // Attach event listeners
+                loginForm.addEventListener('submit', handleLogin);
+                signOutButton.addEventListener('click', handleSignOut);
+                addAttendeeForm.addEventListener('submit', handleAddAttendee);
+                refreshStatsButton.addEventListener('click', fetchStats);
+
+            } catch (e) {
+                console.error("Firebase initialization failed:", e);
+                loginError.innerText = "Error loading admin panel. Check console.";
+            }
+        });
+
+        // --- Authentication ---
+        async function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-password').value;
+            loginError.innerText = "";
+
+            try {
+                await auth.signInWithEmailAndPassword(email, pass);
+                // Auth listener will handle the UI change
+            } catch (e) {
+                console.error("Login failed:", e);
+                loginError.innerText = e.message;
+            }
+        }
+
+        async function handleSignOut() {
+            try {
+                await auth.signOut();
+                // Auth listener will handle the UI change
+            } catch (e) {
+                console.error("Sign out failed:", e);
+            }
+        }
+
+        // --- Add/Update Attendee ---
+        async function handleAddAttendee(e) {
+            e.preventDefault();
+            const name = document.getElementById('attendee-name').value;
+            const msg = document.getElementById('attendee-message').value;
+            const img = document.getElementById('attendee-image-url').value;
+
+            if (!name || !msg) return;
+
+            addAttendeeSuccess.innerText = "Adding...";
+
+            try {
+                // Use the name as the document ID
+                const attendeeRef = db.collection("attendees").doc(name);
+                await attendeeRef.set({
+                    msg: msg,
+                    img: img
+                });
+
+                addAttendeeSuccess.innerText = `Successfully added/updated ${name}!`;
+                addAttendeeForm.reset();
+                setTimeout(() => { addAttendeeSuccess.innerText = ""; }, 3000);
+            } catch (e) {
+                console.error("Error adding attendee:", e);
+                addAttendeeSuccess.innerText = "Error. See console.";
+            }
+        }
+
+        // --- Feedback Stats ---
+        async function fetchStats() {
+            thumbsUpCount.innerText = "...";
+            thumbsDownCount.innerText = "...";
+            try {
+                // In v8, we get the collections and use .size
+                const upVotesSnapshot = await db.collection("feedback").where("vote", "==", "up").get();
+                const downVotesSnapshot = await db.collection("feedback").where("vote", "==", "down").get();
+
+                thumbsUpCount.innerText = upVotesSnapshot.size;
+                thumbsDownCount.innerText = downVotesSnapshot.size;
+            } catch (e) {
+                console.error("Error fetching stats:", e);
+                thumbsUpCount.innerText = "Err";
+                thumbsDownCount.innerText = "Err";
+            }
+        }
+
+        // --- Attendee List ---
+        function loadAttendeeList() {
+            // Use onSnapshot for a real-time list
+            db.collection("attendees").onSnapshot(snapshot => {
+                if (snapshot.empty) {
+                    attendeeList.innerHTML = "<p class='text-gray-500'>No attendees added yet.</p>";
+                    return;
+                }
+
+                let html = "";
+                snapshot.forEach(doc => {
+                    html += `
+                        <div class="p-2 border-b border-gray-100">
+                            <p class="font-semibold text-gray-800">${doc.id}</p>
+                            <p class="text-sm text-gray-600 truncate">${doc.data().msg}</p>
+                        </div>
+                    `;
+                });
+                attendeeList.innerHTML = html;
+            }, e => {
+                console.error("Error loading attendee list:", e);
+                attendeeList.innerHTML = "<p class='text-red-500'>Error loading list.</p>";
+            });
+        }
+
+    </script>
+</body>
+</html>
