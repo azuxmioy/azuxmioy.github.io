@@ -17,13 +17,29 @@
             background-color: #f8fafc; /* slate-50 */
         }
         .hero-bg {
+            /* Fallback color if image doesn't load */
+            background-color: #1e293b; 
+            
             /* Placeholder background image */
             background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('images/bg2.jpg');
             background-size: cover;
             background-position: center;
+            
+            /* Desktop: keep the fixed parallax effect */
             background-attachment: fixed;
         }
-        /* The .section-title class has been removed from here */
+
+        /* iOS/Mobile Fix:
+           iPhone browsers often break 'background-attachment: fixed'.
+           This media query detects touch devices and switches to 'scroll',
+           which renders the image correctly (crisp and properly sized).
+        */
+        @media (hover: none) and (pointer: coarse) {
+            .hero-bg {
+                background-attachment: scroll;
+            }
+        }
+
         .entry-card {
             @apply bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300;
         }
@@ -31,15 +47,18 @@
 </head>
 <body class="text-slate-700">
 
-    <header class="hero-bg text-white min-h-screen flex flex-col items-center justify-center p-4">
-        <div class="text-center">
-            <img src="images/profile/crap.jpg" alt="Profile Picture" class="w-36 h-36 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-white/50 shadow-lg">
+    <!-- Updated min-h-screen to use dvh (dynamic viewport height) for better iPhone address bar handling -->
+    <header class="hero-bg text-white min-h-[100dvh] flex flex-col items-center justify-center p-4 relative">
+        <div class="text-center z-10">
+            <!-- Ensure fallbacks for images are handled gracefully in production -->
+            <img src="images/profile/crap.jpg" alt="Profile Picture" class="w-36 h-36 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-white/50 shadow-lg object-cover bg-slate-500">
             <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">Hsuan-I Ho</h1> 
-            <img src="images/profile/ho.png" class="w-60 h-auto mx-auto shadow-lg">
+            <!-- Added error handling for the signature image -->
+            <img src="images/profile/ho.png" class="w-60 h-auto mx-auto shadow-lg mt-4" onerror="this.style.display='none'">
             <p class="mt-2 md:mt-4 text-lg md:text-xl text-slate-300">PhD Candidate at ETH Zürich</p>
         </div>
         
-        <div class="mt-8 bg-black/30 backdrop-blur-sm p-4 rounded-xl">
+        <div class="mt-8 bg-black/30 backdrop-blur-sm p-4 rounded-xl z-10">
             <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6">
                 <a href="mailto:hohs@ethz.ch" class="flex items-center gap-2 hover:text-sky-300 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
@@ -60,7 +79,7 @@
             </div>
         </div>
         
-        <div class="absolute bottom-10 animate-bounce">
+        <div class="absolute bottom-10 animate-bounce z-10">
             <a href="#main-content">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg>
             </a>
@@ -74,8 +93,7 @@
             <div class="bg-white p-6 rounded-xl shadow-sm text-lg leading-relaxed">
                 <p>
                     I’m open to new roles and collaborations. Feel free to reach out if my background aligns with your team’s goals.
-                    </br>
-                    </br>
+                    <br><br>
                     I am a last-year PhD Candidate at ETH Zürich, supervised by Prof. Dr. Otmar Hilliges and Prof. Dr. Marc Pollefeys. I obtained my Computer Science Master's degree at ETH Zürich in 2021. My research interests lie in human-centric computer vision, ranging from basic understandings of human-centric videos, such as human recognition and pose estimation, to more complicated generative tasks, such as motion prediction and full-body generation. Recently, I have been focused on leveraging generative 3D avatars to facilitate human pose estimation and 3D understanding.
                 </p>
             </div>
@@ -433,7 +451,7 @@
 
                 mediaElement.src = item.image;
                 mediaElement.alt = `Teaser for ${item.title}`;
-                mediaElement.className = 'rounded-lg w-full h-48 object-contain shadow-md';
+                mediaElement.className = 'rounded-lg w-full h-48 object-contain shadow-md bg-slate-100'; // Added bg color for better look if transparent
                 
                 if (isVideo) {
                     mediaElement.autoplay = true;
@@ -442,7 +460,10 @@
                     mediaElement.playsInline = true;
                 }
 
-                mediaElement.onerror = () => mediaElement.style.display = 'none';
+                mediaElement.onerror = () => {
+                    // mediaElement.style.display = 'none'; // Optional: hide if fails
+                    // Instead of hiding, maybe show a placeholder or keep layout stable
+                };
                 
                 return mediaElement.outerHTML;
             }
@@ -482,8 +503,8 @@
                 data.forEach(item => {
                     list.innerHTML += `
                         <div class="entry-card flex items-center gap-6">
-                            <div class="w-20 h-20 flex-shrink-0 bg-white rounded-full flex items-center justify-center p-2 shadow-inner">
-                                <img src="${item.logo}" alt="${item.institution} logo" class="max-w-full max-h-full object-contain" onerror="this.style.display='none'">
+                            <div class="w-20 h-20 flex-shrink-0 bg-white rounded-full flex items-center justify-center p-2 shadow-inner border border-slate-100">
+                                <img src="${item.logo}" alt="${item.institution} logo" class="max-w-full max-h-full object-contain" onerror="this.parentElement.style.backgroundColor='#eee'">
                             </div>
                             <div class="flex-grow">
                                 <h3 class="text-xl font-bold text-slate-900">${item.title || item.degree}</h3>
