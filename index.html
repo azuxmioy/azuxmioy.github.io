@@ -149,6 +149,12 @@
                 </div>
         </section>
 
+        <section id="open-source">
+            <h2 class="text-3xl font-bold text-slate-800 mb-8 border-b-2 border-slate-200 pb-2">Open Source Projects</h2>
+            <div id="opensource-list" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                </div>
+        </section>
+
         <section id="selected-works">
             <h2 class="text-3xl font-bold text-slate-800 mb-8 border-b-2 border-slate-200 pb-2">Thesis</h2>
             <div id="works-list" class="space-y-8">
@@ -328,57 +334,6 @@
     year = {2021}
 }`
             },
-            {
-                title: 'READ: Reciprocal Attention Discriminator for Image-to-Video Re-Identification',
-                authors: 'Minho Shim, <u>Hsuan-I Ho</u>, Jinhyung Kim, Dongyoon Wee',
-                conference: 'ECCV 2020',
-                image: 'images/projects/eccv20_thumb.jpg',
-                links: {
-                    Paper: 'https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123590324.pdf',
-                    Code: 'https://github.com/minostauros/READ'
-                },
-                bibtex: `@inproceedings{shim20eccv,
-    title = {READ: Reciprocal Attention Discriminator for Image-to-Video Re-Identification},
-    author = {Shim, Minho and Ho, Hsuan-I and Kim, Jinhyung and Wee, Dongyoon},
-    booktitle = {European Conference on Computer Vision (ECCV)},
-    year = {2020}
-}`
-            },
-            {
-                title: 'Learning from Dances: Pose-Invariant Re-Identification for Multi-Person Tracking',
-                authors: '<u>Hsuan-I Ho</u>, Minho Shim, Dongyoon Wee',
-                conference: 'ICASSP 2020',
-                image: 'images/projects/dancereid.gif',
-                links: {
-                    Paper: 'https://ieeexplore.ieee.org/abstract/document/9054086',
-                    Code: 'https://github.com/azuxmioy/ST-ReIDNet',
-                    'Dataset': 'https://github.com/azuxmioy/DanceReID',
-                    Video: 'https://youtu.be/E93Pk1TrlTo'
-                },
-                bibtex: `@inproceedings{ho20icassp,
-    title = {Learning from Dances: Pose-Invariant Re-Identification for Multi-Person Tracking},
-    author = {Ho, Hsuan-I and Shim, Minho and Wee, Dongyoon},
-    booktitle = {International Conference on Acoustics, Speech, and Signal Processing (ICASSP)},
-    year = {2020}
-}`
-            },
-            {
-                title: 'Summarizing First-Person Videos from Third Persons’ Points of View',
-                authors: '<u>Hsuan-I Ho</u>, Wei-Chen Chiu, Yu-Chiang Frank Wang',
-                conference: 'ECCV 2018',
-                image: 'images/projects/eccv18_thumb.jpg',
-                links: {
-                    Paper: 'papers/0080.pdf',
-                    Supplementary: 'papers/0080-supp.pdf',
-                    Code: 'https://github.com/azuxmioy/fpvsum'
-                },
-                bibtex: `@inproceedings{ho18eccv,
-    title = {Summarizing First-Person Videos from Third Persons’ Points of View},
-    author = {Ho, Hsuan-I and Chiu, Wei-Chen and Wang, Yu-Chiang Frank},
-    booktitle = {European Conference on Computer Vision (ECCV)},
-    year = {2018}
-}`
-            },
         ];
 
         const experiences = [
@@ -464,6 +419,52 @@
             },
         ];
 
+        const openSourceProjects = [
+            {
+                title: 'Editable Humans',
+                repo: 'custom-humans/editable-humans',
+                description: 'A generative model of 3D virtual humans that can be locally edited and animated. Official implementation of our CVPR 2023 paper.',
+                image: 'images/projects/customhuman_edit.gif',
+                stars: 187,
+                links: {
+                    Code: 'https://github.com/custom-humans/editable-humans',
+                    'Project Page': 'https://custom-humans.github.io/'
+                }
+            },
+            {
+                title: 'SiTH',
+                repo: 'SiTH-Diffusion/SiTH',
+                description: 'Single-view textured 3D human reconstruction powered by an image-conditioned diffusion model. Official implementation of our CVPR 2024 paper.',
+                image: 'images/projects/sith_avatars.gif',
+                stars: 215,
+                links: {
+                    Code: 'https://github.com/SiTH-Diffusion/SiTH',
+                    'Project Page': 'https://sith-diffusion.github.io/'
+                }
+            },
+            {
+                title: 'mesh2smplx',
+                repo: 'azuxmioy/mesh2smplx',
+                description: 'Interactive toolkit for registering and fitting SMPL-X to sequences of 3D texture scans, used in our X-Avatar, CustomHumans, and 4D-DRESS projects.',
+                image: 'images/projects/mesh2smplx.gif',
+                stars: 2,
+                links: {
+                    Code: 'https://github.com/azuxmioy/mesh2smplx'
+                }
+            },
+            {
+                title: 'ReMu',
+                repo: 'eth-ait/ReMu',
+                description: 'Reconstructing multi-layer 3D clothed humans from a set of images. Official implementation of our BMVC 2025 paper.',
+                image: 'images/projects/remu_teaser.gif',
+                stars: 2,
+                links: {
+                    Code: 'https://github.com/eth-ait/ReMu',
+                    'Project Page': 'https://eth-ait.github.io/ReMu/'
+                }
+            },
+        ];
+
 
         // --- RENDERING LOGIC ---
 
@@ -522,6 +523,47 @@
                         </div>
                     </div>
                 `;
+            });
+
+            // Render Open Source Projects
+            const osList = document.getElementById('opensource-list');
+            openSourceProjects.forEach(proj => {
+                const linksHTML = Object.entries(proj.links).map(([name, url]) =>
+                    `<a href="${url}" target="_blank" class="text-sky-600 hover:text-sky-800 hover:underline">${name}</a>`
+                ).join(' | ');
+                const mediaHTML = createMediaElement(proj);
+
+                osList.innerHTML += `
+                    <div class="entry-card flex flex-col">
+                        <div class="w-full mb-4">
+                            ${mediaHTML}
+                        </div>
+                        <div class="flex items-start justify-between gap-3">
+                            <h3 class="text-xl font-bold text-slate-900">${proj.title}</h3>
+                            <a href="https://github.com/${proj.repo}" target="_blank" class="github-stars flex items-center gap-1 flex-shrink-0 text-sm font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-full transition-colors" data-repo="${proj.repo}" title="Star on GitHub">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-amber-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <span>${proj.stars}</span>
+                            </a>
+                        </div>
+                        <p class="text-xs text-slate-400 font-mono mt-1">${proj.repo}</p>
+                        <p class="text-md mt-2 text-slate-600 flex-grow">${proj.description}</p>
+                        <div class="mt-4 text-md space-x-2">
+                            ${linksHTML}
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Fetch live GitHub star counts (falls back to seeded values on failure)
+            document.querySelectorAll('.github-stars').forEach(el => {
+                fetch(`https://api.github.com/repos/${el.dataset.repo}`)
+                    .then(r => r.ok ? r.json() : null)
+                    .then(data => {
+                        if (data && typeof data.stargazers_count === 'number') {
+                            el.querySelector('span').textContent = data.stargazers_count.toLocaleString();
+                        }
+                    })
+                    .catch(() => {});
             });
 
             // Render Experience & Education (reusable function)
