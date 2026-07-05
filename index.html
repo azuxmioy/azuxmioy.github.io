@@ -99,6 +99,8 @@
                     I earned my doctoral degree from the <a href="https://ait.ethz.ch/" target="_blank" class="text-sky-600 hover:underline">Advanced Interactive Technologies lab</a> within the Institute for Intelligent Interactive Systems at ETH Zurich, supervised by <a href="https://ait.ethz.ch/people/hilliges" target="_blank" class="text-sky-600 hover:underline">Prof. Otmar Hilliges</a> and <a href="https://cvg.ethz.ch/team/Prof-Dr-Marc-Pollefeys" target="_blank" class="text-sky-600 hover:underline">Prof. Marc Pollefeys</a>. In February 2026, I successfully defended my thesis, <a href="https://doi.org/10.3929/ethz-c-000795446" target="_blank" class="text-sky-600 italic hover:underline" title="View Thesis">"Advancing Digital Humans Toward Personalized Human-Centric AI."</a> My doctoral committee included Prof. Marc Pollefeys (ETH Zurich), <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html" target="_blank" class="text-sky-600 hover:underline">Prof. Siyu Tang</a> (ETH Zurich), <a href="https://faculty.ucmerced.edu/mhyang/" target="_blank" class="text-sky-600 hover:underline">Prof. Ming-Hsuan Yang</a> (UC Merced), and <a href="https://lingjie0206.github.io/" target="_blank" class="text-sky-600 hover:underline">Prof. Lingjie Liu</a> (University of Pennsylvania).
                     <br><br>
                     My research focuses on human-centric computer vision and machine perception powered by Generative AI. Prior to my PhD, I completed my MSc degree in Computer Science at ETH Zurich and BSc in Electrical Engineering at National Taiwan University. I have joined Meta Reality Labs in Redmond and Google XR in Zurich as a research scientist intern, working on diffusion models for human pose estimation and 3D human generation in practical industrial settings.
+                    <br><br>
+                    I am open to academic collaborations and supervising self-motivated students. If you are interested in working with me, please reach out via email with your CV.
                 </p>
             </div>
         </section>
@@ -144,7 +146,7 @@
         </section>
 
         <section id="publications">
-            <h2 class="text-3xl font-bold text-slate-800 mb-8 border-b-2 border-slate-200 pb-2">Publications</h2>
+            <h2 class="text-3xl font-bold text-slate-800 mb-8 border-b-2 border-slate-200 pb-2">Selected Publications</h2>
             <div id="publications-list" class="space-y-8">
                 </div>
         </section>
@@ -161,11 +163,23 @@
                 </div>
         </section>
 
+        <section id="honors">
+            <h2 class="text-3xl font-bold text-slate-800 mb-8 border-b-2 border-slate-200 pb-2">Honors &amp; Awards</h2>
+            <div id="honors-list" class="bg-white p-6 rounded-xl shadow-sm divide-y divide-slate-100">
+                </div>
+        </section>
+
+        <section id="services">
+            <h2 class="text-3xl font-bold text-slate-800 mb-8 border-b-2 border-slate-200 pb-2">Academic Services</h2>
+            <div id="services-list" class="bg-white p-6 rounded-xl shadow-sm space-y-4">
+                </div>
+        </section>
+
     </main>
 
     <footer class="bg-slate-800 text-slate-400 text-center p-6 mt-16">
         <p>© <span id="copyright-year"></span> Hsuan-I Ho. All rights reserved.</p>
-        <p class="text-sm mt-1">Template refactored with help from Gemini. Last updated: July 2025.</p>
+        <p class="text-sm mt-1">Template refactored with help from Gemini. Last updated: July 2026.</p>
     </footer>
 
     <script>
@@ -338,15 +352,21 @@
 
         const experiences = [
             {
+                logo: 'images/logos/nvidia.png',
+                title: 'Research Scientist',
+                institution: 'NVIDIA Research',
+                period: 'Aug 2026 - Present'
+            },
+            {
                 logo: 'images/logos/google.png',
                 title: 'Student Researcher',
-                institution: 'Google XR, Zürich',
+                institution: 'Google XR',
                 period: 'April 2025 - Feb 2026'
             },
             {
                 logo: 'images/logos/meta.jpg',
                 title: 'Research Scientist Intern',
-                institution: 'Reality Labs, Meta, Redmond',
+                institution: 'Reality Labs, Meta',
                 period: 'April 2024 - Feb 2025'
             },
             {
@@ -362,7 +382,7 @@
                 logo: 'images/logos/aicenter.png',
                 degree: 'Postdoctoral Researcher, ETH AI Center',
                 institution: 'ETH AI Center',
-                period: 'Feb 2026 - '
+                period: 'Feb 2026 - March 2026'
             },
             {
                 logo: 'images/logos/ait.png',
@@ -425,7 +445,6 @@
                 repo: 'custom-humans/editable-humans',
                 description: 'A generative model of 3D virtual humans that can be locally edited and animated. Official implementation of our CVPR 2023 paper.',
                 image: 'images/projects/customhuman_edit.gif',
-                stars: 187,
                 links: {
                     Code: 'https://github.com/custom-humans/editable-humans',
                     'Project Page': 'https://custom-humans.github.io/'
@@ -436,20 +455,19 @@
                 repo: 'SiTH-Diffusion/SiTH',
                 description: 'Single-view textured 3D human reconstruction powered by an image-conditioned diffusion model. Official implementation of our CVPR 2024 paper.',
                 image: 'images/projects/sith_avatars.gif',
-                stars: 215,
                 links: {
                     Code: 'https://github.com/SiTH-Diffusion/SiTH',
                     'Project Page': 'https://sith-diffusion.github.io/'
                 }
             },
             {
-                title: 'mesh2smplx',
-                repo: 'azuxmioy/mesh2smplx',
-                description: 'Interactive toolkit for registering and fitting SMPL-X to sequences of 3D texture scans, used in our X-Avatar, CustomHumans, and 4D-DRESS projects.',
-                image: 'images/projects/mesh2smplx.gif',
-                stars: 2,
+                title: 'Gaussian Wardrobe',
+                repo: 'eth-ait/GaussianWardrobe',
+                description: 'Compositional 3D Gaussian avatars for free-form virtual try-on. Official implementation of our 3DV 2026 paper.',
+                image: 'images/projects/gawa_tryon.gif',
                 links: {
-                    Code: 'https://github.com/azuxmioy/mesh2smplx'
+                    Code: 'https://github.com/eth-ait/GaussianWardrobe',
+                    'Project Page': 'https://eth-ait.github.io/GaussianWardrobe/'
                 }
             },
             {
@@ -457,12 +475,32 @@
                 repo: 'eth-ait/ReMu',
                 description: 'Reconstructing multi-layer 3D clothed humans from a set of images. Official implementation of our BMVC 2025 paper.',
                 image: 'images/projects/remu_teaser.gif',
-                stars: 2,
                 links: {
                     Code: 'https://github.com/eth-ait/ReMu',
                     'Project Page': 'https://eth-ait.github.io/ReMu/'
                 }
             },
+            {
+                title: 'mesh2smplx',
+                repo: 'azuxmioy/mesh2smplx',
+                description: 'Interactive toolkit for registering and fitting SMPL-X to sequences of 3D texture scans, used in our X-Avatar, CustomHumans, and 4D-DRESS projects.',
+                image: 'images/projects/mesh2smplx.gif',
+                links: {
+                    Code: 'https://github.com/azuxmioy/mesh2smplx'
+                }
+            },
+        ];
+
+        const honors = [
+            { year: '2026', title: 'Accepted by CVPR Doctoral Consortium' },
+            { year: '2025', title: 'Awarded ICCV Outstanding Reviewer' },
+            { year: '2024', title: 'Taiwan Government Scholarship to Study Abroad (GSSA)', note: '32K USD' },
+        ];
+
+        const services = [
+            { role: 'Conference Reviewer', venues: 'CVPR, ICCV, ECCV, SIGGRAPH, NeurIPS, 3DV, BMVC, ACCV' },
+            { role: 'Journal Reviewer', venues: 'TMM, TPAMI, TVCG, IJCV' },
+            { role: 'Lecturer, TA', venues: 'I taught <a href="https://ait.ethz.ch/teaching/courses/2025-ss-machine-perception" target="_blank" class="text-sky-600 hover:underline">Machine Perception</a> and created course materials/projects at ETH Zurich.' }
         ];
 
 
@@ -540,9 +578,9 @@
                         </div>
                         <div class="flex items-start justify-between gap-3">
                             <h3 class="text-xl font-bold text-slate-900">${proj.title}</h3>
-                            <a href="https://github.com/${proj.repo}" target="_blank" class="github-stars flex items-center gap-1 flex-shrink-0 text-sm font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-full transition-colors" data-repo="${proj.repo}" title="Star on GitHub">
+                            <a href="https://github.com/${proj.repo}" target="_blank" class="github-stars flex items-center gap-1 flex-shrink-0 text-sm font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-full transition duration-300 opacity-0" data-repo="${proj.repo}" title="Star on GitHub">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-amber-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <span>${proj.stars}</span>
+                                <span></span>
                             </a>
                         </div>
                         <p class="text-xs text-slate-400 font-mono mt-1">${proj.repo}</p>
@@ -554,13 +592,14 @@
                 `;
             });
 
-            // Fetch live GitHub star counts (falls back to seeded values on failure)
+            // Fetch live GitHub star counts; badge stays hidden until the count loads
             document.querySelectorAll('.github-stars').forEach(el => {
                 fetch(`https://api.github.com/repos/${el.dataset.repo}`)
                     .then(r => r.ok ? r.json() : null)
                     .then(data => {
                         if (data && typeof data.stargazers_count === 'number') {
                             el.querySelector('span').textContent = data.stargazers_count.toLocaleString();
+                            el.classList.remove('opacity-0');
                         }
                     })
                     .catch(() => {});
@@ -613,6 +652,28 @@
                             </div>
                              ${w.bibtex ? `<pre class="bibtex-content hidden bg-slate-100 text-slate-700 text-sm p-3 mt-3 rounded-md overflow-x-auto"><code>${w.bibtex}</code></pre>` : ''}
                         </div>
+                    </div>
+                `;
+            });
+
+            // Render Honors & Awards
+            const honorsList = document.getElementById('honors-list');
+            honors.forEach(h => {
+                honorsList.innerHTML += `
+                    <div class="flex gap-4 items-baseline py-3 first:pt-0 last:pb-0">
+                        <span class="text-sky-600 font-bold w-14 flex-shrink-0">${h.year}</span>
+                        <span class="text-slate-700">${h.title}${h.note ? ` <span class="text-slate-400">· ${h.note}</span>` : ''}</span>
+                    </div>
+                `;
+            });
+
+            // Render Academic Services
+            const servicesList = document.getElementById('services-list');
+            services.forEach(s => {
+                servicesList.innerHTML += `
+                    <div class="flex flex-col sm:flex-row sm:gap-4">
+                        <span class="font-bold text-slate-800 sm:w-44 flex-shrink-0">${s.role}</span>
+                        <span class="text-slate-700">${s.venues}</span>
                     </div>
                 `;
             });
