@@ -1,0 +1,27 @@
+/* Shared presentation for all five original SVG actors. */
+.character-vector { width: 100%; height: 100%; overflow: visible; }
+.character-vector .cat-head,
+.character-vector .cat-tail,
+.character-vector .cat-arm-left,
+.character-vector .cat-arm-right,
+.character-vector .cat-eyes,
+.character-vector .cat-mouth,
+.character-vector .cat-body { transform-box: fill-box; }
+.character-vector .cat-head { transform-origin: 50% 95%; }
+.character-vector .cat-tail { transform-origin: 8% 90%; }
+.character-vector .cat-arm-left,
+.character-vector .cat-arm-right { transform-origin: 50% 5%; }
+.character-vector .cat-body { transform-origin: 50% 100%; }
+.character-vector .cat-eyes { transform-origin: center; }
+.character-vector .expression-shock,
+.character-vector .expression-annoyed,
+.character-vector .expression-goofy,
+.character-vector .cat-cigarette { display: none; }
+[data-reaction="shock"] .character-vector .expression-normal,
+[data-reaction="annoyed"] .character-vector .expression-normal,
+[data-reaction="goofy"] .character-vector .expression-normal { display: none; }
+[data-reaction="shock"] .character-vector .expression-shock,
+[data-reaction="annoyed"] .character-vector .expression-annoyed,
+[data-reaction="goofy"] .character-vector .expression-goofy { display: inline; }
+[data-smoking="true"] .character-vector .cat-cigarette,
+.is-smoking .character-vector .cat-cigarette { display: inline; }
